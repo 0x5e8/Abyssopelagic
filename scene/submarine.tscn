@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfifsi00ny448"]
+
+[ext_resource type="Script" path="res://script/submarine.gd" id="1_kylpk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xalc2"]
+height = 3.004
+
+[node name="submarine" type="CharacterBody3D"]
+script = ExtResource("1_kylpk")
+
+[node name="mesh" type="CSGCombiner3D" parent="."]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="mesh"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01302, 0, 0)
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.615909, 0)
+radius = 0.199
+height = 0.317
+
+[node name="CSGBox3D" type="CSGBox3D" parent="mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08917, 0, 0)
+size = Vector3(0.195, 0.5, 0.5)
+
+[node name="collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_xalc2")

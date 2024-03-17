@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqe4q27n7ostf"]
+
+[ext_resource type="PackedScene" uid="uid://bfifsi00ny448" path="res://scene/submarine.tscn" id="1_4mud5"]
+[ext_resource type="Script" path="res://script/follow.gd" id="2_lilwv"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tedyh"]
+
+[sub_resource type="Sky" id="Sky_0b4c7"]
+sky_material = SubResource("ProceduralSkyMaterial_tedyh")
+
+[sub_resource type="Environment" id="Environment_8ffeg"]
+background_mode = 2
+sky = SubResource("Sky_0b4c7")
+
+[sub_resource type="BoxMesh" id="BoxMesh_bylh7"]
+
+[node name="Node" type="Node"]
+
+[node name="submarine" parent="." instance=ExtResource("1_4mud5")]
+
+[node name="pivot" type="Node3D" parent="submarine"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.87184, 1.84504, 0.0948896)
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target", "pivot")]
+transform = Transform3D(-4.37114e-08, 0.146083, -0.989272, 0, 0.989272, 0.146083, 1, 6.38549e-09, -4.32425e-08, -2.87184, 1.84504, 0.0948896)
+script = ExtResource("2_lilwv")
+target = NodePath("../submarine")
+pivot = NodePath("../submarine/pivot")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8ffeg")
+
+[node name="map" type="Node" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.64117, 1.28192, 4.16339)
+mesh = SubResource("BoxMesh_bylh7")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.226045, 1.28192, -5.80561)
+mesh = SubResource("BoxMesh_bylh7")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3834, 6.18406, -5.80561)
+mesh = SubResource("BoxMesh_bylh7")
+skeleton = NodePath("../..")
