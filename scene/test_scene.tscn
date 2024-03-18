@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqe4q27n7ostf"]
+[gd_scene load_steps=10 format=3 uid="uid://cqe4q27n7ostf"]
 
 [ext_resource type="PackedScene" uid="uid://bfifsi00ny448" path="res://scene/submarine.tscn" id="1_4mud5"]
 [ext_resource type="Script" path="res://script/follow.gd" id="2_lilwv"]
+[ext_resource type="PackedScene" uid="uid://djqkl0trowssa" path="res://model/fish/flower-like.blend" id="3_axu1c"]
+[ext_resource type="PackedScene" uid="uid://c1t5s4mw61q7v" path="res://model/fish/normal-fish.blend" id="4_wm5ua"]
+[ext_resource type="PackedScene" uid="uid://ddnkroc40ksyv" path="res://model/fish/very-long-fish.blend" id="5_c62u5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tedyh"]
 
@@ -31,6 +34,30 @@ pivot = NodePath("../submarine/pivot")
 environment = SubResource("Environment_8ffeg")
 
 [node name="map" type="Node" parent="."]
+
+[node name="flower-like" parent="map" instance=ExtResource("3_axu1c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.84506, 0, -4.86421)
+
+[node name="flower-like2" parent="map" instance=ExtResource("3_axu1c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.78778, 0, -9.52194)
+
+[node name="flower-like3" parent="map" instance=ExtResource("3_axu1c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.12737, 0, 5.5052)
+
+[node name="normal-fish" parent="map" instance=ExtResource("4_wm5ua")]
+transform = Transform3D(-0.386228, 0, 0.922403, 0, 1, 0, -0.922403, 0, -0.386228, 6.03839, 0, -9.05357)
+
+[node name="normal-fish2" parent="map" instance=ExtResource("4_wm5ua")]
+transform = Transform3D(0.610574, 0, -0.791959, 0, 1, 0, 0.791959, 0, 0.610574, 4.12172, 2.51533, 6.79234)
+
+[node name="normal-fish3" parent="map" instance=ExtResource("4_wm5ua")]
+transform = Transform3D(1, 0, 0, 0, 0.875583, 0.483068, 0, -0.483068, 0.875583, -2.13914, 4.49655, -2.31309)
+
+[node name="very-long-fish" parent="map" instance=ExtResource("5_c62u5")]
+transform = Transform3D(0.431724, 0, 0.902006, 0, 1, 0, -0.902006, 0, 0.431724, 4.40926, 3.80994, -1.5986)
+
+[node name="very-long-fish2" parent="map" instance=ExtResource("5_c62u5")]
+transform = Transform3D(-0.481356, 0, -0.876525, 0, 1, 0, 0.876525, 0, -0.481356, 8.0191, 4.78561, 5.81622)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.64117, 1.28192, 4.16339)

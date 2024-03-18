@@ -12,10 +12,10 @@ var rotating_speed = 0.0
 
 func _physics_process(delta):
 	var input_dir = Input.get_vector("backward", "forward", "left", "right")
+	var y_dir = Input.get_axis("down", "up")
 
-	var direction = (transform.basis * Vector3(input_dir.x, 0, 0)).normalized()
+	var direction = (transform.basis * Vector3(input_dir.x, y_dir, 0)).normalized()
 	if direction:
-		direction.y = 0
 		velocity = (velocity + direction * ACCELERATION * delta).limit_length(MAX_SPEED)
 	else:
 		direction = velocity.normalized()
