@@ -1,28 +1,50 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfifsi00ny448"]
+[gd_scene load_steps=5 format=3 uid="uid://bfifsi00ny448"]
 
 [ext_resource type="Script" path="res://script/submarine.gd" id="1_kylpk"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1w7md"]
+transparency = 1
+albedo_color = Color(0.27451, 0.384314, 1, 0.137255)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jm8at"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xalc2"]
-height = 3.004
+radius = 1.0
+height = 6.435
 
 [node name="submarine" type="CharacterBody3D"]
 script = ExtResource("1_kylpk")
 
 [node name="mesh" type="CSGCombiner3D" parent="."]
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="mesh"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+[node name="body" type="CSGCylinder3D" parent="mesh"]
+transform = Transform3D(-9.33238e-08, -2.135, 0, 2.135, -9.33238e-08, 0, 0, 0, 2.135, 0, 0, 0)
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01302, 0, 0)
+[node name="inner_body" type="CSGCylinder3D" parent="mesh"]
+transform = Transform3D(-9.33238e-08, -2.135, 0, 2.135, -9.33238e-08, 0, 0, 0, 2.135, 0, 0, 0)
+operation = 2
+radius = 0.4
+height = 1.98181
 
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.615909, 0)
+[node name="head" type="CSGSphere3D" parent="mesh"]
+transform = Transform3D(2.135, 0, 0, 0, 2.135, 0, 0, 0, 2.135, 2.12463, 0, 0)
+material = SubResource("StandardMaterial3D_1w7md")
+
+[node name="inner_head" type="CSGSphere3D" parent="mesh"]
+transform = Transform3D(2.135, 0, 0, 0, 2.135, 0, 0, 0, 2.135, 1.80909, 0, 0)
+operation = 2
+radius = 0.4
+material = SubResource("StandardMaterial3D_jm8at")
+
+[node name="top" type="CSGCylinder3D" parent="mesh"]
+transform = Transform3D(2.135, 0, 0, 0, 2.135, 0, 0, 0, 2.135, 0, 1.22209, 0)
 radius = 0.199
 height = 0.317
 
-[node name="CSGBox3D" type="CSGBox3D" parent="mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08917, 0, 0)
+[node name="butt" type="CSGBox3D" parent="mesh"]
+transform = Transform3D(2.135, 0, 0, 0, 2.135, 0, 0, 0, 2.135, -2.35243, 0, 0)
 size = Vector3(0.195, 0.5, 0.5)
 
 [node name="collision" type="CollisionShape3D" parent="."]

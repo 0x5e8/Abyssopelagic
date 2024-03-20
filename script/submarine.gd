@@ -10,7 +10,12 @@ const MAX_ROTATING_SPEED = 0.01
 
 var rotating_speed = 0.0
 
+var piloting = false
+
 func _physics_process(delta):
+	if not piloting:
+		return
+	
 	var input_dir = Input.get_vector("backward", "forward", "left", "right")
 	var y_dir = Input.get_axis("down", "up")
 

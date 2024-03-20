@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cqe4q27n7ostf"]
+[gd_scene load_steps=11 format=3 uid="uid://cqe4q27n7ostf"]
 
 [ext_resource type="PackedScene" uid="uid://bfifsi00ny448" path="res://scene/submarine.tscn" id="1_4mud5"]
-[ext_resource type="Script" path="res://script/follow.gd" id="2_lilwv"]
+[ext_resource type="Script" path="res://script/control.gd" id="1_cff6m"]
 [ext_resource type="PackedScene" uid="uid://djqkl0trowssa" path="res://model/fish/flower-like.blend" id="3_axu1c"]
 [ext_resource type="PackedScene" uid="uid://c1t5s4mw61q7v" path="res://model/fish/normal-fish.blend" id="4_wm5ua"]
+[ext_resource type="PackedScene" uid="uid://bubwwssirf2cr" path="res://scene/player.tscn" id="5_a5u2o"]
 [ext_resource type="PackedScene" uid="uid://ddnkroc40ksyv" path="res://model/fish/very-long-fish.blend" id="5_c62u5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tedyh"]
@@ -19,16 +20,13 @@ sky = SubResource("Sky_0b4c7")
 
 [node name="Node" type="Node"]
 
+[node name="control" type="Node" parent="."]
+script = ExtResource("1_cff6m")
+
+[node name="player" parent="." instance=ExtResource("5_a5u2o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.63881, 3.26225, -1.43281)
+
 [node name="submarine" parent="." instance=ExtResource("1_4mud5")]
-
-[node name="pivot" type="Node3D" parent="submarine"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.87184, 1.84504, 0.0948896)
-
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target", "pivot")]
-transform = Transform3D(-4.37114e-08, 0.146083, -0.989272, 0, 0.989272, 0.146083, 1, 6.38549e-09, -4.32425e-08, -2.87184, 1.84504, 0.0948896)
-script = ExtResource("2_lilwv")
-target = NodePath("../submarine")
-pivot = NodePath("../submarine/pivot")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8ffeg")
@@ -73,3 +71,8 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3834, 6.18406, -5.80561)
 mesh = SubResource("BoxMesh_bylh7")
 skeleton = NodePath("../..")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.52482, -0.301514, -1.19641)
+use_collision = true
+size = Vector3(5.20367, 0.396973, 8.42651)
