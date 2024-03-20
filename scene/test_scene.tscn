@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://cqe4q27n7ostf"]
 
-[ext_resource type="PackedScene" uid="uid://bfifsi00ny448" path="res://scene/submarine.tscn" id="1_4mud5"]
-[ext_resource type="Script" path="res://script/control.gd" id="1_cff6m"]
+[ext_resource type="PackedScene" uid="uid://bfifsi00ny448" path="res://model/object/submarine.tscn" id="1_4mud5"]
+[ext_resource type="Script" path="res://control.gd" id="1_cff6m"]
 [ext_resource type="PackedScene" uid="uid://djqkl0trowssa" path="res://model/fish/flower-like.blend" id="3_axu1c"]
 [ext_resource type="PackedScene" uid="uid://c1t5s4mw61q7v" path="res://model/fish/normal-fish.blend" id="4_wm5ua"]
-[ext_resource type="PackedScene" uid="uid://bubwwssirf2cr" path="res://scene/player.tscn" id="5_a5u2o"]
+[ext_resource type="PackedScene" uid="uid://bubwwssirf2cr" path="res://model/object/player.tscn" id="5_a5u2o"]
 [ext_resource type="PackedScene" uid="uid://ddnkroc40ksyv" path="res://model/fish/very-long-fish.blend" id="5_c62u5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tedyh"]
@@ -23,10 +23,11 @@ sky = SubResource("Sky_0b4c7")
 [node name="control" type="Node" parent="."]
 script = ExtResource("1_cff6m")
 
-[node name="player" parent="." instance=ExtResource("5_a5u2o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.63881, 3.26225, -1.43281)
-
 [node name="submarine" parent="." instance=ExtResource("1_4mud5")]
+transform = Transform3D(-3.44244, 0, -0.228344, 0, 3.45, 0, 0.228344, 0, -3.44244, 17.4304, 0, 0)
+
+[node name="player" parent="submarine" instance=ExtResource("5_a5u2o")]
+transform = Transform3D(-0.0206482, 0, -0.289119, 0, 0.289855, 0, 0.289119, 0, -0.0206482, -0.865485, 0.160897, -0.119113)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8ffeg")
@@ -76,3 +77,9 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.52482, -0.301514, -1.19641)
 use_collision = true
 size = Vector3(5.20367, 0.396973, 8.42651)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="pilot" type="Label" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 23.0
