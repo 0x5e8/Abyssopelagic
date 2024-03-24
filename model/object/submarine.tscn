@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfifsi00ny448"]
+[gd_scene load_steps=8 format=3 uid="uid://bfifsi00ny448"]
 
 [ext_resource type="Script" path="res://model/object/submarine.gd" id="1_kylpk"]
+[ext_resource type="PackedScene" uid="uid://htixl53ys1bg" path="res://model/object/item/seat.tscn" id="2_71k2r"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_33fu8"]
 transparency = 1
@@ -11,7 +12,7 @@ transparency = 1
 albedo_color = Color(0.47451, 0.705882, 1, 0.203922)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iv1ji"]
-size = Vector3(5.05602, 0.232544, 1.67041)
+size = Vector3(4.69342, 0.232544, 1.67041)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ct4aa"]
 size = Vector3(4.67664, 0.794983, 0.187622)
@@ -20,7 +21,11 @@ size = Vector3(4.67664, 0.794983, 0.187622)
 size = Vector3(0.295898, 1, 1)
 
 [node name="submarine" type="CharacterBody3D"]
+motion_mode = 1
 script = ExtResource("1_kylpk")
+
+[node name="seat" parent="." instance=ExtResource("2_71k2r")]
+transform = Transform3D(-1.57361e-08, 0, 0.36, 0, 0.36, 0, -0.36, 0, -1.57361e-08, 1.75947, -0.463509, 0)
 
 [node name="mesh" type="CSGCombiner3D" parent="."]
 
@@ -53,7 +58,7 @@ transform = Transform3D(2.135, 0, 0, 0, 2.135, 0, 0, 0, 2.135, -2.35243, 0, 0)
 size = Vector3(0.195, 0.5, 0.5)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.273629, -0.89681, 0.0109863)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.273629, -0.58009, 0.0109863)
 shape = SubResource("BoxShape3D_iv1ji")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
@@ -72,6 +77,4 @@ shape = SubResource("BoxShape3D_noin2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.98475, 0, 0)
 shape = SubResource("BoxShape3D_noin2")
 
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.173603, 0.842602, 0.0219726)
-shape = SubResource("BoxShape3D_iv1ji")
+[connection signal="when_use" from="seat" to="." method="_on_seat_when_use"]

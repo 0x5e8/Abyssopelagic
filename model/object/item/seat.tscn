@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://htixl53ys1bg"]
+
+[ext_resource type="Script" path="res://model/object/item/item.gd" id="1_1qqg7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0b4kd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xk5dg"]
+size = Vector3(1, 1.5752, 1.25922)
+
+[node name="seat" type="Area3D" groups=["item"]]
+script = ExtResource("1_1qqg7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.395, 0, 0, 0, 1.15977, 0, 0.182796, 0.0913978)
+mesh = SubResource("BoxMesh_0b4kd")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.24899, 0.0921967, 0, -0.300502, 0.383202, 0, 0.898139, -0.420431)
+mesh = SubResource("BoxMesh_0b4kd")
+
+[node name="seat_point" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8786, 0.288123)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.782715, 0.0431213)
+shape = SubResource("BoxShape3D_xk5dg")

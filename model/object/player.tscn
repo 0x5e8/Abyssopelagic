@@ -12,8 +12,13 @@ script = ExtResource("1_0ykv3")
 [node name="mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_jyf0m")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="collision" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_dgcsi")
 
 [node name="camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.518366, -0.449251)
+
+[node name="ray" type="RayCast3D" parent="camera"]
+target_position = Vector3(0, 0, -3)
+collide_with_areas = true
+collide_with_bodies = false

@@ -1,12 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://cqe4q27n7ostf"]
+[gd_scene load_steps=11 format=3 uid="uid://cqe4q27n7ostf"]
 
 [ext_resource type="PackedScene" uid="uid://bfifsi00ny448" path="res://model/object/submarine.tscn" id="1_4mud5"]
 [ext_resource type="Script" path="res://control.gd" id="1_cff6m"]
-[ext_resource type="PackedScene" uid="uid://bbrgg8nbnkon6" path="res://model/fish/flower-like.blend" id="3_axu1c"]
-[ext_resource type="PackedScene" uid="uid://bg1ti6vnp0hf4" path="res://model/fish/normal-fish.blend" id="4_wm5ua"]
+[ext_resource type="PackedScene" uid="uid://djqkl0trowssa" path="res://model/fish/flower-like.blend" id="3_axu1c"]
+[ext_resource type="PackedScene" uid="uid://c1t5s4mw61q7v" path="res://model/fish/normal-fish.blend" id="4_wm5ua"]
 [ext_resource type="PackedScene" uid="uid://bubwwssirf2cr" path="res://model/object/player.tscn" id="5_a5u2o"]
-[ext_resource type="PackedScene" uid="uid://dprduirljhiyo" path="res://model/fish/very-long-fish.blend" id="5_c62u5"]
-[ext_resource type="PackedScene" uid="uid://c48mghuvy2a1x" path="res://model/plant/coral1.blend" id="7_670uu"]
+[ext_resource type="PackedScene" uid="uid://ddnkroc40ksyv" path="res://model/fish/very-long-fish.blend" id="5_c62u5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tedyh"]
 
@@ -27,13 +26,9 @@ script = ExtResource("1_cff6m")
 [node name="submarine" parent="." instance=ExtResource("1_4mud5")]
 transform = Transform3D(-3.44244, 0, -0.228344, 0, 3.45, 0, 0.228344, 0, -3.44244, 17.4304, 0, 0)
 
-[node name="player" parent="submarine" node_paths=PackedStringArray("Seat") instance=ExtResource("5_a5u2o")]
+[node name="player" parent="submarine" node_paths=PackedStringArray("message_output") instance=ExtResource("5_a5u2o")]
 transform = Transform3D(-0.0206482, 0, -0.289119, 0, 0.289855, 0, 0.289119, 0, -0.0206482, -0.865485, 0.160897, -0.119113)
-platform_on_leave = 2
-Seat = NodePath("../driving_seat")
-
-[node name="driving_seat" type="Node3D" parent="submarine"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05456, 0, -0.062713)
+message_output = NodePath("../../HUD/message")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8ffeg")
@@ -90,5 +85,29 @@ size = Vector3(5.20367, 0.396973, 8.42651)
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="coral1" parent="." instance=ExtResource("7_670uu")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 1.00955, -0.165064, 3.60286)
+[node name="message" type="Label" parent="HUD"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="crosshair" type="ColorRect" parent="HUD"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.0799598, 0.0738269)
