@@ -33,18 +33,16 @@ func _physics_process(delta):
 
 	if not Global.piloting:
 		input_dir = Input.get_vector("left", "right", "forward", "backward")
-		#if not $".".is_in_group("."):
 		y_dir = Input.get_axis('down',"up")
 	else:
 		global_position=Seat.global_position
 		velocity.y=0
 	var direction = (global_basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	var idk = (global_basis * Vector3(0,y_dir,0)).normalized()
-	var d_vel = gravity*delta 
-	velocity.y-=d_vel 
+	var v_dir = (global_basis * Vector3(0,y_dir,0)).normalized()
+	velocity.y-=gravity*delta 
 	if direction:
 		if is_on_floor():
-			velocity.y = idk.y * player_mass
+			velocity.y = v_dir.y * player_mass
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	
