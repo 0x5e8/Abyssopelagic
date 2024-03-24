@@ -7,6 +7,8 @@ var sensitivity = 0.5
 
 var using_item: Item
 
+var max_cam_angle = deg_to_rad(85)
+
 @export var message_output: Label
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -23,7 +25,9 @@ func move_view(point):
 	
 	# much simpler approach
 	self.rotation.y -= point.x * sensitivity / 100
-	$camera.rotation.x -= point.y * sensitivity / 100
+	# prevent weird camera angle
+	# uncomment this line to do a barrel roll
+	$camera.rotation.x = clamp($camera.rotation.x - point.y * sensitivity / 100, -max_cam_angle, max_cam_angle)
 
 # mouse input
 func _input(event):
