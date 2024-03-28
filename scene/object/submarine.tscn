@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bfifsi00ny448"]
 
-[ext_resource type="Script" path="res://model/object/submarine.gd" id="1_kylpk"]
-[ext_resource type="PackedScene" uid="uid://htixl53ys1bg" path="res://model/object/item/seat.tscn" id="2_71k2r"]
+[ext_resource type="Script" path="res://scene/object/submarine.gd" id="1_kylpk"]
+[ext_resource type="PackedScene" uid="uid://htixl53ys1bg" path="res://scene/object/item/seat.tscn" id="2_71k2r"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_33fu8"]
 transparency = 1

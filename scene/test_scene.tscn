@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://cqe4q27n7ostf"]
 
-[ext_resource type="PackedScene" uid="uid://bfifsi00ny448" path="res://model/object/submarine.tscn" id="1_4mud5"]
-[ext_resource type="Script" path="res://control.gd" id="1_cff6m"]
+[ext_resource type="PackedScene" uid="uid://bfifsi00ny448" path="res://scene/object/submarine.tscn" id="1_4mud5"]
+[ext_resource type="Script" path="res://script/control.gd" id="1_cff6m"]
 [ext_resource type="PackedScene" uid="uid://djqkl0trowssa" path="res://model/fish/flower-like.blend" id="3_axu1c"]
 [ext_resource type="PackedScene" uid="uid://c1t5s4mw61q7v" path="res://model/fish/normal-fish.blend" id="4_wm5ua"]
-[ext_resource type="PackedScene" uid="uid://bubwwssirf2cr" path="res://model/object/player.tscn" id="5_a5u2o"]
+[ext_resource type="PackedScene" uid="uid://bubwwssirf2cr" path="res://scene/object/player.tscn" id="5_a5u2o"]
 [ext_resource type="PackedScene" uid="uid://ddnkroc40ksyv" path="res://model/fish/very-long-fish.blend" id="5_c62u5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tedyh"]
@@ -111,3 +111,10 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.0799598, 0.0738269)
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.77469, 0)
+pixel_size = 0.0246
+billboard = 1
+text = "test world
+for testing purpose"
