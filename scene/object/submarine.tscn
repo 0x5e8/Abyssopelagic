@@ -14,11 +14,12 @@ size = Vector3(4.58838, 1.37241, 0.074707)
 size = Vector3(0.141357, 1.3764, 1.24501)
 
 [node name="submarine" type="CharacterBody3D"]
+transform = Transform3D(3.45, 0, 0, 0, 3.45, 0, 0, 0, 3.45, 0, 0, 0)
 motion_mode = 1
 script = ExtResource("1_kylpk")
 
 [node name="seat" parent="." instance=ExtResource("2_71k2r")]
-transform = Transform3D(-1.57361e-08, 0, 0.36, 0, 0.36, 0, -0.36, 0, -1.57361e-08, 2.24376, -0.69139, 0)
+transform = Transform3D(-9.61651e-09, 0, 0.22, 0, 0.22, 0, -0.22, 0, -9.61651e-09, 2.24376, -0.69139, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.273629, -0.732171, 0.000793368)
