@@ -9,12 +9,12 @@
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tedyh"]
 
-[sub_resource type="Sky" id="Sky_0b4c7"]
+[sub_resource type="Sky" id="Sky_16hnq"]
 sky_material = SubResource("ProceduralSkyMaterial_tedyh")
 
 [sub_resource type="Environment" id="Environment_8ffeg"]
 background_mode = 2
-sky = SubResource("Sky_0b4c7")
+sky = SubResource("Sky_16hnq")
 
 [sub_resource type="BoxMesh" id="BoxMesh_bylh7"]
 

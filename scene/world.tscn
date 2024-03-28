@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://cfjouumdpk6ns"]
+
+[ext_resource type="Script" path="res://script/control.gd" id="1_568a4"]
+[ext_resource type="PackedScene" uid="uid://bqcf86md5cl4s" path="res://model/platform.blend" id="1_tip3s"]
+[ext_resource type="PackedScene" uid="uid://bfifsi00ny448" path="res://scene/object/submarine.tscn" id="2_1wbmx"]
+[ext_resource type="PackedScene" uid="uid://bubwwssirf2cr" path="res://scene/object/player.tscn" id="3_12ffu"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rvjvw"]
+
+[sub_resource type="Sky" id="Sky_0b4c7"]
+sky_material = SubResource("ProceduralSkyMaterial_rvjvw")
+
+[sub_resource type="Environment" id="Environment_s17a1"]
+background_mode = 2
+sky = SubResource("Sky_0b4c7")
+
+[node name="world" type="Node"]
+
+[node name="control" type="Node" parent="."]
+script = ExtResource("1_568a4")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_s17a1")
+
+[node name="platform" parent="." instance=ExtResource("1_tip3s")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.379862, -0.238008, 0.8939, 0.0930851, 0.971263, 0.21905, -0.920348, 0, 0.391101, 1.86525, 1.91527, 0)
+
+[node name="submarine" parent="." instance=ExtResource("2_1wbmx")]
+transform = Transform3D(-0.997807, 0, -0.0661866, 0, 1, 0, 0.0661866, 0, -0.997807, 5.68582, 0, 0)
+
+[node name="player" parent="submarine" node_paths=PackedStringArray("message_output") instance=ExtResource("3_12ffu")]
+transform = Transform3D(-0.0206482, 0, -0.289119, 0, 0.289855, 0, 0.289119, 0, -0.0206482, -0.865485, 0.160897, -0.119113)
+message_output = NodePath("../../HUD/message")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="pilot" type="Label" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="message" type="Label" parent="HUD"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="crosshair" type="ColorRect" parent="HUD"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.0799598, 0.0738269)
