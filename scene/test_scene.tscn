@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cqe4q27n7ostf"]
+[gd_scene load_steps=12 format=3 uid="uid://cqe4q27n7ostf"]
 
 [ext_resource type="PackedScene" uid="uid://bfifsi00ny448" path="res://scene/object/submarine.tscn" id="1_4mud5"]
 [ext_resource type="Script" path="res://script/control.gd" id="1_cff6m"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c1t5s4mw61q7v" path="res://model/fish/normal-fish.blend" id="4_wm5ua"]
 [ext_resource type="PackedScene" uid="uid://bubwwssirf2cr" path="res://scene/object/player.tscn" id="5_a5u2o"]
 [ext_resource type="PackedScene" uid="uid://ddnkroc40ksyv" path="res://model/fish/very-long-fish.blend" id="5_c62u5"]
+[ext_resource type="PackedScene" uid="uid://bqcf86md5cl4s" path="res://model/platform.blend" id="7_43jxo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tedyh"]
 
@@ -74,10 +75,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3834, 6.18406, -5.80561)
 mesh = SubResource("BoxMesh_bylh7")
 skeleton = NodePath("../..")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.52482, -0.301514, -1.19641)
-use_collision = true
-size = Vector3(5.20367, 0.396973, 8.42651)
+[node name="platform2" parent="map" instance=ExtResource("7_43jxo")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 2.23999, -16.9254, 3.32343)
 
 [node name="HUD" type="CanvasLayer" parent="."]
 

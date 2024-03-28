@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Abyssopelagic"
 config/tags=PackedStringArray("current")
-run/main_scene="res://scene/world.tscn"
+run/main_scene="res://scene/test_scene.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
