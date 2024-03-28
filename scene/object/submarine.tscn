@@ -1,80 +1,49 @@
-[gd_scene load_steps=8 format=3 uid="uid://bfifsi00ny448"]
+[gd_scene load_steps=7 format=3 uid="uid://bfifsi00ny448"]
 
 [ext_resource type="Script" path="res://scene/object/submarine.gd" id="1_kylpk"]
 [ext_resource type="PackedScene" uid="uid://htixl53ys1bg" path="res://scene/object/item/seat.tscn" id="2_71k2r"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_33fu8"]
-transparency = 1
-albedo_color = Color(1, 1, 1, 0)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jm8at"]
-transparency = 1
-albedo_color = Color(0.47451, 0.705882, 1, 0.203922)
+[ext_resource type="PackedScene" uid="uid://d03rb2wyxc7aa" path="res://model/submarine.blend" id="3_ua0ol"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iv1ji"]
-size = Vector3(4.69342, 0.232544, 1.67041)
+size = Vector3(4.69342, 0.0854187, 1.24329)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ct4aa"]
-size = Vector3(4.67664, 0.794983, 0.187622)
+[sub_resource type="BoxShape3D" id="BoxShape3D_ws6oa"]
+size = Vector3(4.58838, 1.37241, 0.074707)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_noin2"]
-size = Vector3(0.295898, 1, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_lyln6"]
+size = Vector3(0.141357, 1.3764, 1.24501)
 
 [node name="submarine" type="CharacterBody3D"]
 motion_mode = 1
 script = ExtResource("1_kylpk")
 
 [node name="seat" parent="." instance=ExtResource("2_71k2r")]
-transform = Transform3D(-1.57361e-08, 0, 0.36, 0, 0.36, 0, -0.36, 0, -1.57361e-08, 1.75947, -0.463509, 0)
-
-[node name="mesh" type="CSGCombiner3D" parent="."]
-
-[node name="body" type="CSGCylinder3D" parent="mesh"]
-transform = Transform3D(-9.33238e-08, -2.135, 0, 2.135, -9.33238e-08, 0, 0, 0, 2.135, 0, 0, 0)
-
-[node name="inner_body" type="CSGCylinder3D" parent="mesh"]
-transform = Transform3D(-9.33238e-08, -2.135, 0, 2.135, -9.33238e-08, 0, 0, 0, 2.135, 0, 0, 0)
-operation = 2
-radius = 0.4
-height = 1.98181
-
-[node name="head" type="CSGSphere3D" parent="mesh"]
-transform = Transform3D(2.135, 0, 0, 0, 2.135, 0, 0, 0, 2.135, 2.12463, 0, 0)
-material = SubResource("StandardMaterial3D_33fu8")
-
-[node name="inner_head" type="CSGSphere3D" parent="mesh"]
-transform = Transform3D(2.135, 0, 0, 0, 2.135, 0, 0, 0, 2.135, 1.80909, 0, 0)
-operation = 2
-radius = 0.4
-material = SubResource("StandardMaterial3D_jm8at")
-
-[node name="top" type="CSGCylinder3D" parent="mesh"]
-transform = Transform3D(2.135, 0, 0, 0, 2.135, 0, 0, 0, 2.135, 0, 1.22209, 0)
-radius = 0.199
-height = 0.317
-
-[node name="butt" type="CSGBox3D" parent="mesh"]
-transform = Transform3D(2.135, 0, 0, 0, 2.135, 0, 0, 0, 2.135, -2.35243, 0, 0)
-size = Vector3(0.195, 0.5, 0.5)
+transform = Transform3D(-1.57361e-08, 0, 0.36, 0, 0.36, 0, -0.36, 0, -1.57361e-08, 2.24376, -0.69139, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.273629, -0.58009, 0.0109863)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.273629, -0.732171, 0.000793368)
+visible = false
 shape = SubResource("BoxShape3D_iv1ji")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.281868, -0.0672422, 0.756783)
-shape = SubResource("BoxShape3D_ct4aa")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.282, -0.067, -0.757)
-shape = SubResource("BoxShape3D_ct4aa")
-
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.45858, 0, 0)
-shape = SubResource("BoxShape3D_noin2")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.198189, -0.00584185, 0.651726)
+shape = SubResource("BoxShape3D_ws6oa")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.98475, 0, 0)
-shape = SubResource("BoxShape3D_noin2")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.198, -0.006, -0.652)
+shape = SubResource("BoxShape3D_ws6oa")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.03216, -0.00353301, -0.0254823)
+visible = false
+shape = SubResource("BoxShape3D_lyln6")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.684, -0.00527251, -0.000145048)
+visible = false
+shape = SubResource("BoxShape3D_lyln6")
+
+[node name="submarine" parent="." instance=ExtResource("3_ua0ol")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
 [connection signal="when_use" from="seat" to="." method="_on_seat_when_use"]

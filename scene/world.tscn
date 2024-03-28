@@ -31,7 +31,7 @@ transform = Transform3D(0.379862, -0.238008, 0.8939, 0.0930851, 0.971263, 0.2190
 transform = Transform3D(-0.997807, 0, -0.0661866, 0, 1, 0, 0.0661866, 0, -0.997807, 5.68582, 0, 0)
 
 [node name="player" parent="submarine" node_paths=PackedStringArray("message_output") instance=ExtResource("3_12ffu")]
-transform = Transform3D(-0.0206482, 0, -0.289119, 0, 0.289855, 0, 0.289119, 0, -0.0206482, -0.865485, 0.160897, -0.119113)
+transform = Transform3D(-0.0206482, 0, -0.289119, 0, 0.289855, 0, 0.289119, 0, -0.0206482, 0.381849, 0.160897, -0.0363747)
 message_output = NodePath("../../HUD/message")
 
 [node name="HUD" type="CanvasLayer" parent="."]

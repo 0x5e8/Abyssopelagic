@@ -27,7 +27,7 @@ script = ExtResource("1_cff6m")
 transform = Transform3D(-3.44244, 0, -0.228344, 0, 3.45, 0, 0.228344, 0, -3.44244, 17.4304, 0, 0)
 
 [node name="player" parent="submarine" node_paths=PackedStringArray("message_output") instance=ExtResource("5_a5u2o")]
-transform = Transform3D(-0.0206482, 0, -0.289119, 0, 0.289855, 0, 0.289119, 0, -0.0206482, -0.865485, 0.160897, -0.119113)
+transform = Transform3D(-0.0206482, 0, -0.289119, 0, 0.289855, 0, 0.289119, 0, -0.0206482, 1.15905, 0.160897, 0.0151784)
 message_output = NodePath("../../HUD/message")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
