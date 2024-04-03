@@ -16,8 +16,7 @@ func _physics_process(delta):
 	var sp_state = get_world_3d().direct_space_state
 	
 	for k in range(len(rayDirs)):
-		pass
-		
+		#im so done with this shit man
 		var maxdist = Vector3(0,0,0)
 		var rayQuery = PhysicsRayQueryParameters3D.create(rayPosRoot,  $"normal-fish/target".global_position + detection_range*rayDirs[k])
 		rayQuery.exclude = [self]
