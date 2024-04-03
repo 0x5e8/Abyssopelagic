@@ -1,0 +1,266 @@
+[gd_scene load_steps=14 format=3 uid="uid://cqe4q27n7ostf"]
+
+[ext_resource type="PackedScene" uid="uid://bfifsi00ny448" path="res://model/object/submarine.tscn" id="1_4mud5"]
+[ext_resource type="Script" path="res://control.gd" id="1_cff6m"]
+[ext_resource type="PackedScene" uid="uid://djqkl0trowssa" path="res://model/fish/flower-like.blend" id="3_axu1c"]
+[ext_resource type="PackedScene" uid="uid://c1t5s4mw61q7v" path="res://model/fish/normal-fish.blend" id="4_wm5ua"]
+[ext_resource type="PackedScene" uid="uid://bubwwssirf2cr" path="res://model/object/player.tscn" id="5_a5u2o"]
+[ext_resource type="PackedScene" uid="uid://ddnkroc40ksyv" path="res://model/fish/very-long-fish.blend" id="5_c62u5"]
+[ext_resource type="Script" path="res://model/object/boids/boid.gd" id="6_go0mr"]
+[ext_resource type="PackedScene" uid="uid://vesmusresxm8" path="res://model/plant/c_grass.blend" id="7_16bfl"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tedyh"]
+
+[sub_resource type="Sky" id="Sky_0b4c7"]
+sky_material = SubResource("ProceduralSkyMaterial_tedyh")
+
+[sub_resource type="Environment" id="Environment_8ffeg"]
+background_mode = 2
+sky = SubResource("Sky_0b4c7")
+
+[sub_resource type="BoxMesh" id="BoxMesh_bylh7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p4ygd"]
+size = Vector3(0.615234, 0.361557, 2.84886)
+
+[node name="Node" type="Node"]
+
+[node name="control" type="Node" parent="."]
+script = ExtResource("1_cff6m")
+
+[node name="submarine" parent="." instance=ExtResource("1_4mud5")]
+transform = Transform3D(-3.44244, 0, -0.228344, 0, 3.45, 0, 0.228344, 0, -3.44244, 17.4304, 0, 0)
+
+[node name="player" parent="submarine" node_paths=PackedStringArray("message_output") instance=ExtResource("5_a5u2o")]
+transform = Transform3D(-0.0206482, 0, -0.289119, 0, 0.289855, 0, 0.289119, 0, -0.0206482, -0.865485, 0.160897, -0.119113)
+message_output = NodePath("../../HUD/message")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8ffeg")
+
+[node name="map" type="Node" parent="."]
+
+[node name="flower-like" parent="map" instance=ExtResource("3_axu1c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.84506, 0, -4.86421)
+
+[node name="flower-like2" parent="map" instance=ExtResource("3_axu1c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.78778, 0, -9.52194)
+
+[node name="flower-like3" parent="map" instance=ExtResource("3_axu1c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.12737, 0, 5.5052)
+
+[node name="normal-fish3" parent="map" instance=ExtResource("4_wm5ua")]
+transform = Transform3D(1, 0, 0, 0, 0.875583, 0.483068, 0, -0.483068, 0.875583, -2.13914, 4.49655, -2.31309)
+
+[node name="normal-fish2" parent="map" instance=ExtResource("4_wm5ua")]
+transform = Transform3D(0.610574, 0, -0.791959, 0, 1, 0, 0.791959, 0, 0.610574, 4.12172, 2.51533, 6.79234)
+
+[node name="very-long-fish" parent="map" instance=ExtResource("5_c62u5")]
+transform = Transform3D(0.431724, 0, 0.902006, 0, 1, 0, -0.902006, 0, 0.431724, 4.40926, 3.80994, -1.5986)
+
+[node name="very-long-fish2" parent="map" instance=ExtResource("5_c62u5")]
+transform = Transform3D(-0.481356, 0, -0.876525, 0, 1, 0, 0.876525, 0, -0.481356, 8.0191, 4.78561, 5.81622)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.64117, 1.28192, 4.16339)
+mesh = SubResource("BoxMesh_bylh7")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="CSGBox3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3834, 6.18406, -5.80561)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="map"]
+transform = Transform3D(-0.161604, -0.986856, 0, 0.986856, -0.161604, 0, 0, 0, 1, -7.42449, -0.301514, 0.798665)
+use_collision = true
+size = Vector3(4.89021, 0.396973, 11.573)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 0.145202, -0.989402, 0, 0.989402, 0.145202, 1.80179, 0.990962, -6.41147)
+use_collision = true
+size = Vector3(17.0709, 0.396973, 5.80713)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="map"]
+transform = Transform3D(0.996195, 0.0860101, -0.0140847, 0, -0.161604, -0.986856, -0.0871557, 0.9831, -0.160989, 1.80179, 0.990962, 5.19679)
+use_collision = true
+size = Vector3(17.0709, 0.396973, 5.80713)
+
+[node name="fishe" type="CharacterBody3D" parent="map"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, -1.50967)
+script = ExtResource("6_go0mr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map/fishe"]
+transform = Transform3D(-0.0436081, 0.000989564, 0.999048, -0.998791, 0.0226657, -0.0436194, -0.0226873, -0.999742, -4.36698e-08, 0.00709073, 0.176772, 0.0690551)
+shape = SubResource("BoxShape3D_p4ygd")
+
+[node name="normal-fish" parent="map/fishe" instance=ExtResource("4_wm5ua")]
+transform = Transform3D(-0.576404, 0, 0.817165, 0, 1, 0, -0.817165, 0, -0.576404, 0.0640844, 0.238141, 0.0555649)
+
+[node name="fishe_vision" type="Node3D" parent="map/fishe/normal-fish"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 1.869)
+
+[node name="target" type="Node3D" parent="map/fishe/normal-fish"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="fishe2" type="CharacterBody3D" parent="map"]
+transform = Transform3D(0.128204, 0, 0.153505, 0, 0.2, 0, -0.153505, 0, 0.128204, -6.82757, 0, 0.681534)
+script = ExtResource("6_go0mr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map/fishe2"]
+transform = Transform3D(-0.0436081, 0.000989564, 0.999048, -0.998791, 0.0226657, -0.0436194, -0.0226873, -0.999742, -4.36698e-08, 0.00709073, 0.176772, 0.0690551)
+shape = SubResource("BoxShape3D_p4ygd")
+
+[node name="normal-fish" parent="map/fishe2" instance=ExtResource("4_wm5ua")]
+transform = Transform3D(-0.00973886, 0, 0.999952, 0, 1, 0, -0.999952, 0, -0.00973886, 0.0640844, 0.238141, 0.0555649)
+
+[node name="target" type="Node3D" parent="map/fishe2/normal-fish"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="fishe_vision" type="Node3D" parent="map/fishe2/normal-fish"]
+transform = Transform3D(1.5, 0, 9.31323e-10, 0, 1.5, 0, -9.31323e-10, 0, 1.5, 0, 0, 1.869)
+
+[node name="fishe3" type="CharacterBody3D" parent="map"]
+transform = Transform3D(0.123187, 0, -0.157559, 0, 0.2, 0, 0.157559, 0, 0.123187, 2.69435, 0, 1.60048)
+script = ExtResource("6_go0mr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map/fishe3"]
+transform = Transform3D(-0.0436081, 0.000989564, 0.999048, -0.998791, 0.0226657, -0.0436194, -0.0226873, -0.999742, -4.36698e-08, 0.00709073, 0.176772, 0.0690551)
+shape = SubResource("BoxShape3D_p4ygd")
+
+[node name="normal-fish" parent="map/fishe3" instance=ExtResource("4_wm5ua")]
+transform = Transform3D(-0.576404, 0, 0.817165, 0, 1, 0, -0.817165, 0, -0.576404, 0.0640844, 0.238141, 0.0555649)
+
+[node name="fishe_vision" type="Node3D" parent="map/fishe3/normal-fish"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 1.869)
+
+[node name="target" type="Node3D" parent="map/fishe3/normal-fish"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="fishe4" type="CharacterBody3D" parent="map"]
+transform = Transform3D(0.199896, 0, -0.00644954, 0, 0.2, 0, 0.00644954, 0, 0.199896, -3.23722, 0, -2.42861)
+script = ExtResource("6_go0mr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map/fishe4"]
+transform = Transform3D(-0.0436081, 0.000989564, 0.999048, -0.998791, 0.0226657, -0.0436194, -0.0226873, -0.999742, -4.36698e-08, 0.00709073, 0.176772, 0.0690551)
+shape = SubResource("BoxShape3D_p4ygd")
+
+[node name="normal-fish" parent="map/fishe4" instance=ExtResource("4_wm5ua")]
+transform = Transform3D(-0.00973886, 0, 0.999952, 0, 1, 0, -0.999952, 0, -0.00973886, 0.0640844, 0.238141, 0.0555649)
+
+[node name="target" type="Node3D" parent="map/fishe4/normal-fish"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="fishe_vision" type="Node3D" parent="map/fishe4/normal-fish"]
+transform = Transform3D(1.5, 0, 9.31323e-10, 0, 1.5, 0, -9.31323e-10, 0, 1.5, 0, 0, 1.869)
+
+[node name="fishe5" type="CharacterBody3D" parent="map"]
+transform = Transform3D(0.191967, 0, 0.0561132, 0, 0.2, 0, -0.0561132, 0, 0.191967, 2.69785, 0, -2.42346)
+script = ExtResource("6_go0mr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map/fishe5"]
+transform = Transform3D(-0.0436081, 0.000989564, 0.999048, -0.998791, 0.0226657, -0.0436194, -0.0226873, -0.999742, -4.36698e-08, 0.00709073, 0.176772, 0.0690551)
+shape = SubResource("BoxShape3D_p4ygd")
+
+[node name="normal-fish" parent="map/fishe5" instance=ExtResource("4_wm5ua")]
+transform = Transform3D(-0.576404, 0, 0.817165, 0, 1, 0, -0.817165, 0, -0.576404, 0.0640844, 0.238141, 0.0555649)
+
+[node name="fishe_vision" type="Node3D" parent="map/fishe5/normal-fish"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 1.869)
+
+[node name="target" type="Node3D" parent="map/fishe5/normal-fish"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="fishe6" type="CharacterBody3D" parent="map"]
+transform = Transform3D(0.0799865, 0, 0.183309, 0, 0.2, 0, -0.183309, 0, 0.0799865, -3.24071, 0, 1.59532)
+script = ExtResource("6_go0mr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map/fishe6"]
+transform = Transform3D(-0.0436081, 0.000989564, 0.999048, -0.998791, 0.0226657, -0.0436194, -0.0226873, -0.999742, -4.36698e-08, 0.00709073, 0.176772, 0.0690551)
+shape = SubResource("BoxShape3D_p4ygd")
+
+[node name="normal-fish" parent="map/fishe6" instance=ExtResource("4_wm5ua")]
+transform = Transform3D(-0.00973886, 0, 0.999952, 0, 1, 0, -0.999952, 0, -0.00973886, 0.0640844, 0.238141, 0.0555649)
+
+[node name="target" type="Node3D" parent="map/fishe6/normal-fish"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="fishe_vision" type="Node3D" parent="map/fishe6/normal-fish"]
+transform = Transform3D(1.5, 0, 9.31323e-10, 0, 1.5, 0, -9.31323e-10, 0, 1.5, 0, 0, 1.869)
+
+[node name="fishe7" type="CharacterBody3D" parent="map"]
+transform = Transform3D(0.17588, 0, -0.095217, 0, 0.2, 0, 0.095217, 0, 0.17588, 3.25225, 0, 0.247711)
+script = ExtResource("6_go0mr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map/fishe7"]
+transform = Transform3D(-0.0436081, 0.000989564, 0.999048, -0.998791, 0.0226657, -0.0436194, -0.0226873, -0.999742, -4.36698e-08, 0.00709073, 0.176772, 0.0690551)
+shape = SubResource("BoxShape3D_p4ygd")
+
+[node name="normal-fish" parent="map/fishe7" instance=ExtResource("4_wm5ua")]
+transform = Transform3D(-0.576404, 0, 0.817165, 0, 1, 0, -0.817165, 0, -0.576404, 0.0640844, 0.238141, 0.0555649)
+
+[node name="fishe_vision" type="Node3D" parent="map/fishe7/normal-fish"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 1.869)
+
+[node name="target" type="Node3D" parent="map/fishe7/normal-fish"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="fishe8" type="CharacterBody3D" parent="map"]
+transform = Transform3D(0.185824, 0, 0.0739558, 0, 0.2, 0, -0.0739558, 0, 0.185824, -3.79511, 0, -1.07585)
+script = ExtResource("6_go0mr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map/fishe8"]
+transform = Transform3D(-0.0436081, 0.000989564, 0.999048, -0.998791, 0.0226657, -0.0436194, -0.0226873, -0.999742, -4.36698e-08, 0.00709073, 0.176772, 0.0690551)
+shape = SubResource("BoxShape3D_p4ygd")
+
+[node name="normal-fish" parent="map/fishe8" instance=ExtResource("4_wm5ua")]
+transform = Transform3D(-0.00973886, 0, 0.999952, 0, 1, 0, -0.999952, 0, -0.00973886, 0.0640844, 0.238141, 0.0555649)
+
+[node name="target" type="Node3D" parent="map/fishe8/normal-fish"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="fishe_vision" type="Node3D" parent="map/fishe8/normal-fish"]
+transform = Transform3D(1.5, 0, 9.31323e-10, 0, 1.5, 0, -9.31323e-10, 0, 1.5, 0, 0, 1.869)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="pilot" type="Label" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="message" type="Label" parent="HUD"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="crosshair" type="ColorRect" parent="HUD"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.0799598, 0.0738269)
+
+[node name="c_grass" parent="." instance=ExtResource("7_16bfl")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 2.88255, -0.464184, -8.36115)
+
+[node name="c_grass2" parent="." instance=ExtResource("7_16bfl")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.89103, 0, -5.84696)
+
+[node name="c_grass3" parent="." instance=ExtResource("7_16bfl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3789, 0.0531092, -7.79695)
+
+[node name="c_grass4" parent="." instance=ExtResource("7_16bfl")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 2.59565, 0, -7.01789)
