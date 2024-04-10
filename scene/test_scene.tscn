@@ -1,11 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cqe4q27n7ostf"]
+[gd_scene load_steps=9 format=3 uid="uid://cqe4q27n7ostf"]
 
 [ext_resource type="PackedScene" uid="uid://bfifsi00ny448" path="res://scene/object/submarine.tscn" id="1_4mud5"]
 [ext_resource type="Script" path="res://script/control.gd" id="1_cff6m"]
-[ext_resource type="PackedScene" uid="uid://djqkl0trowssa" path="res://model/fish/flower-like.blend" id="3_axu1c"]
-[ext_resource type="PackedScene" uid="uid://c1t5s4mw61q7v" path="res://model/fish/normal-fish.blend" id="4_wm5ua"]
+[ext_resource type="PackedScene" uid="uid://djhploxqmgrtu" path="res://scene/object/fish/fish.tscn" id="4_frfam"]
 [ext_resource type="PackedScene" uid="uid://bubwwssirf2cr" path="res://scene/object/player.tscn" id="5_a5u2o"]
-[ext_resource type="PackedScene" uid="uid://ddnkroc40ksyv" path="res://model/fish/very-long-fish.blend" id="5_c62u5"]
 [ext_resource type="PackedScene" uid="uid://bqcf86md5cl4s" path="res://model/platform.blend" id="7_43jxo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tedyh"]
@@ -16,8 +14,6 @@ sky_material = SubResource("ProceduralSkyMaterial_tedyh")
 [sub_resource type="Environment" id="Environment_8ffeg"]
 background_mode = 2
 sky = SubResource("Sky_16hnq")
-
-[sub_resource type="BoxMesh" id="BoxMesh_bylh7"]
 
 [node name="Node" type="Node"]
 
@@ -36,44 +32,14 @@ environment = SubResource("Environment_8ffeg")
 
 [node name="map" type="Node" parent="."]
 
-[node name="flower-like" parent="map" instance=ExtResource("3_axu1c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.84506, 0, -4.86421)
+[node name="fish" parent="map" instance=ExtResource("4_frfam")]
+transform = Transform3D(-0.962111, 0, 0.272658, 0, 1, 0, -0.272658, 0, -0.962111, 0, 0, 0)
+swinging = true
 
-[node name="flower-like2" parent="map" instance=ExtResource("3_axu1c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.78778, 0, -9.52194)
-
-[node name="flower-like3" parent="map" instance=ExtResource("3_axu1c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.12737, 0, 5.5052)
-
-[node name="normal-fish" parent="map" instance=ExtResource("4_wm5ua")]
-transform = Transform3D(-0.386228, 0, 0.922403, 0, 1, 0, -0.922403, 0, -0.386228, 6.03839, 0, -9.05357)
-
-[node name="normal-fish2" parent="map" instance=ExtResource("4_wm5ua")]
-transform = Transform3D(0.610574, 0, -0.791959, 0, 1, 0, 0.791959, 0, 0.610574, 4.12172, 2.51533, 6.79234)
-
-[node name="normal-fish3" parent="map" instance=ExtResource("4_wm5ua")]
-transform = Transform3D(1, 0, 0, 0, 0.875583, 0.483068, 0, -0.483068, 0.875583, -2.13914, 4.49655, -2.31309)
-
-[node name="very-long-fish" parent="map" instance=ExtResource("5_c62u5")]
-transform = Transform3D(0.431724, 0, 0.902006, 0, 1, 0, -0.902006, 0, 0.431724, 4.40926, 3.80994, -1.5986)
-
-[node name="very-long-fish2" parent="map" instance=ExtResource("5_c62u5")]
-transform = Transform3D(-0.481356, 0, -0.876525, 0, 1, 0, 0.876525, 0, -0.481356, 8.0191, 4.78561, 5.81622)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.64117, 1.28192, 4.16339)
-mesh = SubResource("BoxMesh_bylh7")
-skeleton = NodePath("../..")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.226045, 1.28192, -5.80561)
-mesh = SubResource("BoxMesh_bylh7")
-skeleton = NodePath("../..")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3834, 6.18406, -5.80561)
-mesh = SubResource("BoxMesh_bylh7")
-skeleton = NodePath("../..")
+[node name="fish3" parent="map" instance=ExtResource("4_frfam")]
+transform = Transform3D(-0.987018, 0, 0.160613, 0, 1, 0, -0.160613, 0, -0.987018, 2.41908, 1.57981, 0.027226)
+swinging = true
+swing_speed = 8.625
 
 [node name="platform2" parent="map" instance=ExtResource("7_43jxo")]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 2.23999, -16.9254, 3.32343)

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bmsnnjsf2cdrm"
-path="res://.godot/imported/normal-fish.blend-94dc7c2ce70b24d8b1e3b6e636b20be6.scn"
+uid="uid://clo81ud75748u"
+path="res://.godot/imported/spoder.blend-b82b687e7fbbdb1b5af43deb77539198.scn"
 
 [deps]
 
-source_file="res://model/fish/normal-fish.blend"
-dest_files=["res://.godot/imported/normal-fish.blend-94dc7c2ce70b24d8b1e3b6e636b20be6.scn"]
+source_file="res://model/fish/spoder.blend"
+dest_files=["res://.godot/imported/spoder.blend-b82b687e7fbbdb1b5af43deb77539198.scn"]
 
 [params]
 
