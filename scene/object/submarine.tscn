@@ -23,7 +23,6 @@ transform = Transform3D(-9.61651e-09, 0, 0.22, 0, 0.22, 0, -0.22, 0, -9.61651e-0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.273629, -0.732171, 0.000793368)
-visible = false
 shape = SubResource("BoxShape3D_iv1ji")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
@@ -36,12 +35,10 @@ shape = SubResource("BoxShape3D_ws6oa")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.03216, -0.00353301, -0.0254823)
-visible = false
 shape = SubResource("BoxShape3D_lyln6")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.684, -0.00527251, -0.000145048)
-visible = false
 shape = SubResource("BoxShape3D_lyln6")
 
 [node name="submarine" parent="." instance=ExtResource("3_ua0ol")]

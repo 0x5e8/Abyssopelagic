@@ -4,16 +4,15 @@
 [ext_resource type="Script" path="res://scene/object/fish/fish.gd" id="2_2wq72"]
 
 [node name="fish" instance=ExtResource("1_bmk00")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("2_2wq72")
-swing_power = 0.525
+swing_power = 0.715
 swing_speed = 5.0
 swing_sensitivity = 0.322
 
 [node name="target_container" type="Node" parent="." index="0"]
 
 [node name="tail_target" type="Marker3D" parent="target_container" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.29398e-38, -0.171126, -3.04994)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4013e-45, -0.171127, -3.04994)
 
 [node name="armature" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, -0.112007, -0.985546, 0, 0.652414, -0.169199, 0, -0.0792792, 0.284124)
@@ -23,7 +22,6 @@ process_priority = 1
 root_bone = &"head"
 tip_bone = &"tip"
 target_node = NodePath("../../../target_container/tail_target")
-max_iterations = 1
 
 [node name="tail_pos" type="Marker3D" parent="armature" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.94056, 0.654688)

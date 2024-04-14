@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cqe4q27n7ostf"]
+[gd_scene load_steps=10 format=3 uid="uid://cqe4q27n7ostf"]
 
 [ext_resource type="PackedScene" uid="uid://bfifsi00ny448" path="res://scene/object/submarine.tscn" id="1_4mud5"]
 [ext_resource type="Script" path="res://script/control.gd" id="1_cff6m"]
 [ext_resource type="PackedScene" uid="uid://djhploxqmgrtu" path="res://scene/object/fish/fish.tscn" id="4_frfam"]
 [ext_resource type="PackedScene" uid="uid://bubwwssirf2cr" path="res://scene/object/player.tscn" id="5_a5u2o"]
+[ext_resource type="PackedScene" uid="uid://drf4m5ce6chqa" path="res://scene/object/fish/very_long_fish.tscn" id="5_cu3qx"]
 [ext_resource type="PackedScene" uid="uid://bqcf86md5cl4s" path="res://model/platform.blend" id="7_43jxo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tedyh"]
@@ -40,6 +41,10 @@ swinging = true
 transform = Transform3D(-0.987018, 0, 0.160613, 0, 1, 0, -0.160613, 0, -0.987018, 2.41908, 1.57981, 0.027226)
 swinging = true
 swing_speed = 8.625
+
+[node name="very-long-fish" parent="map" instance=ExtResource("5_cu3qx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.04313, 0, 1.65094)
+swinging = true
 
 [node name="platform2" parent="map" instance=ExtResource("7_43jxo")]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 2.23999, -16.9254, 3.32343)
