@@ -1,40 +1,69 @@
 extends CharacterBody3D
 
-const ACCELERATION = 0.5
-const STOP_ACCELERATION = 0.6
-const MAX_SPEED = 3.0
-
-const ROTATING_ACCELERATION = 0.001
-const STOP_ROTATING_ACCELERATION = 0.001
+const MAX_SPEED = 5.0
 const MAX_ROTATING_SPEED = 0.005
 
 var rotating_speed = 0.0
 
 var user: Node3D
 
+var elapsed_time = 0.0
+
+@onready var camera = $camera_viewport.get_children()
+var relative_cam_rot = []
+@onready var cam_pos = $camera_pos.get_children()
+
+var selected_cam = 0
+func change_camera(id):
+	if id >= len(camera) or id < 0:
+		return
+	
+	camera[selected_cam].current = false
+	camera[id].current = true
+	selected_cam = id
+	
+	var viewport = $camera_viewport.get_texture()
+	$tv.mesh.material.set_shader_parameter("tv_texture", viewport)
+
+func _ready():
+	# initiate cameras info
+	for cam in camera:
+		relative_cam_rot.append(cam.rotation)
+	
+	change_camera(0)
+
 func _physics_process(delta):
+	# update cameras' position
+	for id in range($camera_viewport.get_child_count()):
+		camera[id].position = cam_pos[id].global_position
+		camera[id].rotation = relative_cam_rot[id] + self.rotation
+
+	
+	elapsed_time += delta
+	# rotate top camera
+	$camera_viewport/top.rotation.y += PI * sin(elapsed_time * 0.155);
+
 	var input_dir = Vector3.ZERO
 	var y_dir = 0
 	# Q: why doing this
-	# A: to preserve momentum
+	# A: to preserve momentum5
 	if Global.piloting:
 		input_dir = Input.get_vector("backward", "forward", "left", "right")
 		y_dir = Input.get_axis("down", "up")
 
 	var direction = (global_basis * Vector3(input_dir.x, y_dir, 0)).normalized()
 	if direction:
-		velocity = (velocity + direction * ACCELERATION * delta).limit_length(MAX_SPEED)
+		velocity = lerp(velocity, MAX_SPEED * direction, 0.05)
 	else:
-		direction = velocity.normalized()
-		velocity = velocity - direction * STOP_ACCELERATION * delta
+		velocity = lerp(velocity, Vector3.ZERO, 0.05)
 	move_and_slide()
 
 	var rot = -input_dir.y
 	if rot != 0:
-		var sign = 1 if rot > 0 else -1
-		rotating_speed = move_toward(rotating_speed, sign * MAX_ROTATING_SPEED, abs(rot) * ROTATING_ACCELERATION * delta)
+		var sign = -1 if rot < 0 else 1
+		rotating_speed = lerp(rotating_speed, sign * MAX_ROTATING_SPEED, 0.01)
 	else:
-		rotating_speed = move_toward(rotating_speed, 0.0, STOP_ROTATING_ACCELERATION * delta)
+		rotating_speed = lerp(rotating_speed, 0.0, 0.01)
 	rotation.y += rotating_speed
 
 	if not $seat.used:

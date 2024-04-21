@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctdtmktu6x34s"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xvno5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_rjhjq"]
+
+[sub_resource type="Environment" id="Environment_p2ew6"]
+background_mode = 1
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(13.6765, 0, 0, 0, 0.177277, 0, 0, 0, 7.50238, 0, 0, 0)
+mesh = SubResource("BoxMesh_xvno5")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.930397, 0)
+mesh = SubResource("BoxMesh_rjhjq")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23411, 1.22094, -0.860912)
+shadow_enabled = true
+omni_range = 1.785
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_p2ew6")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.815536, 1.10768, 3.4352)
