@@ -53,7 +53,7 @@ func _process(delta):
 		if using_item:
 			using_item.when_use.emit(self)
 			using_item = null
-		elif obj:
+		elif obj and obj.is_in_group("item"):
 			obj.when_use.emit(self)
 			using_item = obj
 	

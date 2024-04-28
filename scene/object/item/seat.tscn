@@ -5,9 +5,9 @@
 [sub_resource type="BoxMesh" id="BoxMesh_0b4kd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xk5dg"]
-size = Vector3(1, 1.5752, 1.25922)
+size = Vector3(1, 1.48194, 1.25922)
 
-[node name="seat" type="Area3D" groups=["item"]]
+[node name="seat" type="StaticBody3D" groups=["item"]]
 script = ExtResource("1_1qqg7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -19,8 +19,8 @@ transform = Transform3D(1, 0, 0, 0, 1.24899, 0.0921967, 0, -0.300502, 0.383202, 
 mesh = SubResource("BoxMesh_0b4kd")
 
 [node name="seat_point" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0413, 0.432523)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15573, 0.432523)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.782715, 0.0431213)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.829347, 0.0431213)
 shape = SubResource("BoxShape3D_xk5dg")

@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckyk11yvdrs64"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_axfas"]
+shading_mode = 0
+
+[node name="LightBulb" type="CSGCombiner3D"]
+cast_shadow = 0
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+radius = 0.11287
+height = 0.0413534
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0373255, 0)
+radius = 0.0919396
+height = 0.0388437
+material = SubResource("StandardMaterial3D_axfas")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="CSGCylinder3D2"]
+omni_range = 10.0

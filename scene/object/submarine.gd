@@ -68,13 +68,13 @@ func _physics_process(delta):
 		rotating_speed = lerp(rotating_speed, 0.0, 0.01)
 	rotation.y += rotating_speed
 
-	if not $seat.used:
+	if not $interior/seat.used:
 		user = null
 		Global.piloting = false
 	else:
 		Global.piloting = true
 	if user:
-		user.global_position = $seat/seat_point.global_position
+		user.global_position = $interior/seat/seat_point.global_position
 
 func _on_seat_when_use(usr):
 	user = usr

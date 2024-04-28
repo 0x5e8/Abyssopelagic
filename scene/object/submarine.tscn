@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bfifsi00ny448"]
+[gd_scene load_steps=12 format=3 uid="uid://bfifsi00ny448"]
 
 [ext_resource type="Script" path="res://scene/object/submarine.gd" id="1_kylpk"]
 [ext_resource type="PackedScene" uid="uid://htixl53ys1bg" path="res://scene/object/item/seat.tscn" id="2_71k2r"]
 [ext_resource type="PackedScene" uid="uid://d03rb2wyxc7aa" path="res://model/submarine.blend" id="3_ua0ol"]
+[ext_resource type="PackedScene" uid="uid://ckyk11yvdrs64" path="res://scene/object/furniture/light_bulb.tscn" id="4_kg1nc"]
 [ext_resource type="Shader" path="res://shader/tv.gdshader" id="4_pdem8"]
 [ext_resource type="Texture2D" uid="uid://b4aj4aimqvtdb" path="res://icon.png" id="5_p1j3c"]
 
@@ -31,11 +32,12 @@ transform = Transform3D(3.45, 0, 0, 0, 3.45, 0, 0, 0, 3.45, 0, 0, 0)
 motion_mode = 1
 script = ExtResource("1_kylpk")
 
-[node name="seat" parent="." instance=ExtResource("2_71k2r")]
-transform = Transform3D(-9.61652e-09, 0, 0.22, 0, 0.22, 0, -0.22, 0, -9.61652e-09, 1.40176, -0.612295, 0)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.273629, -0.732171, 0.000793368)
+shape = SubResource("BoxShape3D_iv1ji")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.273629, 0.718469, 0.000793369)
 shape = SubResource("BoxShape3D_iv1ji")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
@@ -54,8 +56,37 @@ shape = SubResource("BoxShape3D_lyln6")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.34882, -0.00527251, -0.000145048)
 shape = SubResource("BoxShape3D_lyln6")
 
-[node name="submarine" parent="." instance=ExtResource("3_ua0ol")]
+[node name="model" parent="." instance=ExtResource("3_ua0ol")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="interior" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="seat" parent="interior" instance=ExtResource("2_71k2r")]
+transform = Transform3D(-9.61652e-09, 0, 0.22, 0, 0.22, 0, -0.22, 0, -9.61652e-09, 1.40176, -0.688323, 0)
+
+[node name="pilot_room" type="Node3D" parent="interior"]
+
+[node name="LightBulb" parent="interior/pilot_room" instance=ExtResource("4_kg1nc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23697, 0.668628, 0)
+
+[node name="pilot_room_wall" type="CSGCombiner3D" parent="interior/pilot_room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.556001, 0, 0)
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="interior/pilot_room/pilot_room_wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000990212, 0)
+size = Vector3(0.065, 1.37353, 1.225)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="interior/pilot_room/pilot_room_wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.328321, 0)
+operation = 2
+size = Vector3(0.065, 0.700386, 0.425)
+
+[node name="body" type="Node3D" parent="interior"]
+
+[node name="LightBulb" parent="interior/body" instance=ExtResource("4_kg1nc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.686982, 0.668451, 0)
 
 [node name="camera_pos" type="Node3D" parent="."]
 
@@ -97,12 +128,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.370
 transform = Transform3D(-4.37115e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.29561, -0.0951304, 0)
 mesh = SubResource("QuadMesh_a6jax")
 
-[node name="light" type="SpotLight3D" parent="."]
-transform = Transform3D(-1.99102e-08, 0.645044, -0.764145, 2.81958e-08, 0.764145, 0.645044, 1, -8.70268e-09, -3.34018e-08, 1.25178, 0.660158, 0)
-shadow_enabled = true
-spot_range = 6.59343
-spot_attenuation = 0.901252
-
 [node name="headlilght" type="SpotLight3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.19255, 0, 0)
 light_energy = 10.0
@@ -118,4 +143,4 @@ shadow_enabled = true
 spot_range = 100.0
 spot_angle = 55.91
 
-[connection signal="when_use" from="seat" to="." method="_on_seat_when_use"]
+[connection signal="when_use" from="interior/seat" to="." method="_on_seat_when_use"]
