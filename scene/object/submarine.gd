@@ -41,7 +41,10 @@ func _physics_process(delta):
 	
 	elapsed_time += delta
 	# rotate top camera
-	$camera_viewport/top.rotation.y += PI * sin(elapsed_time * 0.155);
+	$camera_viewport/top.rotation.y += PI * sin(elapsed_time * 0.155)
+	
+	$IRlight.global_rotation = camera[selected_cam].global_rotation
+	$IRlight.global_position = camera[selected_cam].global_position
 
 	var input_dir = Vector3.ZERO
 	var y_dir = 0
@@ -60,8 +63,7 @@ func _physics_process(delta):
 
 	var rot = -input_dir.y
 	if rot != 0:
-		var sign = -1 if rot < 0 else 1
-		rotating_speed = lerp(rotating_speed, sign * MAX_ROTATING_SPEED, 0.01)
+		rotating_speed = lerp(rotating_speed, sign(rot) * MAX_ROTATING_SPEED, 0.01)
 	else:
 		rotating_speed = lerp(rotating_speed, 0.0, 0.01)
 	rotation.y += rotating_speed

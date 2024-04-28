@@ -13,5 +13,5 @@ void fragment() {
 	float g = textureLod(tv_texture, UV + g_displacement, 0.0).g;
 	float b = textureLod(tv_texture, UV + b_displacement, 0.0).b;
 
-	ALBEDO = vec3(r, g, b);
+	ALBEDO = vec3(r, g, b) * 0.5;
 }

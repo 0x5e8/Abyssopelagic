@@ -97,16 +97,25 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.370
 transform = Transform3D(-4.37115e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.29561, -0.0951304, 0)
 mesh = SubResource("QuadMesh_a6jax")
 
-[node name="light" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.59444, 0.522574, 0)
+[node name="light" type="SpotLight3D" parent="."]
+transform = Transform3D(-1.99102e-08, 0.645044, -0.764145, 2.81958e-08, 0.764145, 0.645044, 1, -8.70268e-09, -3.34018e-08, 1.25178, 0.660158, 0)
 shadow_enabled = true
-omni_range = 76.365
-omni_attenuation = 1.86607
+spot_range = 6.59343
+spot_attenuation = 0.901252
 
 [node name="headlilght" type="SpotLight3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.19255, 0, 0)
 light_energy = 10.0
+shadow_enabled = true
 spot_range = 30.0
 spot_angle = 47.62
+
+[node name="IRlight" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.91843, 0)
+layers = 2
+light_color = Color(0, 0.635294, 0.635294, 1)
+shadow_enabled = true
+spot_range = 100.0
+spot_angle = 55.91
 
 [connection signal="when_use" from="seat" to="." method="_on_seat_when_use"]

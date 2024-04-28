@@ -7,14 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://drf4m5ce6chqa" path="res://scene/object/fish/very_long_fish.tscn" id="5_cu3qx"]
 [ext_resource type="PackedScene" uid="uid://bqcf86md5cl4s" path="res://model/platform.blend" id="7_43jxo"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tedyh"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_47cdp"]
 
 [sub_resource type="Sky" id="Sky_16hnq"]
-sky_material = SubResource("ProceduralSkyMaterial_tedyh")
+sky_material = SubResource("ProceduralSkyMaterial_47cdp")
 
 [sub_resource type="Environment" id="Environment_8ffeg"]
 background_mode = 1
-background_color = Color(0, 0.00392157, 0.0666667, 1)
+background_color = Color(0, 0, 0.0745098, 1)
 sky = SubResource("Sky_16hnq")
 
 [node name="Node" type="Node"]

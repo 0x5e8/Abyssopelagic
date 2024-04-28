@@ -62,6 +62,11 @@ zoom={
 ]
 }
 
+[layer_names]
+
+3d_render/layer_1="world"
+3d_render/layer_2="infared"
+
 [rendering]
 
 renderer/rendering_method.mobile="gl_compatibility"
