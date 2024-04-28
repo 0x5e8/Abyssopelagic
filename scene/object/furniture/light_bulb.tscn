@@ -1,10 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://ckyk11yvdrs64"]
+[gd_scene load_steps=3 format=3 uid="uid://ckyk11yvdrs64"]
+
+[ext_resource type="Script" path="res://scene/object/furniture/light_bulb.gd" id="1_73ai1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_axfas"]
 shading_mode = 0
 
 [node name="LightBulb" type="CSGCombiner3D"]
 cast_shadow = 0
+script = ExtResource("1_73ai1")
+
+[node name="light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0373255, 0)
+shadow_enabled = true
+omni_range = 10.0
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
 radius = 0.11287
@@ -15,6 +23,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0373255, 0)
 radius = 0.0919396
 height = 0.0388437
 material = SubResource("StandardMaterial3D_axfas")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="CSGCylinder3D2"]
-omni_range = 10.0

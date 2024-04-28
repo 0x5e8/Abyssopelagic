@@ -8,10 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://b4aj4aimqvtdb" path="res://icon.png" id="5_p1j3c"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iv1ji"]
-size = Vector3(4.69342, 0.0854187, 1.24329)
+size = Vector3(6.59572, 0.0854187, 1.24329)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ws6oa"]
-size = Vector3(4.58838, 1.37241, 0.074707)
+size = Vector3(6.50183, 1.37241, 0.074707)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lyln6"]
 size = Vector3(0.141357, 1.3764, 1.24501)
@@ -33,23 +33,23 @@ motion_mode = 1
 script = ExtResource("1_kylpk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.273629, -0.732171, 0.000793368)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.67752, -0.763288, 0.000793368)
 shape = SubResource("BoxShape3D_iv1ji")
 
 [node name="CollisionShape3D6" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.273629, 0.718469, 0.000793369)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.67752, 0.806232, 0.000793369)
 shape = SubResource("BoxShape3D_iv1ji")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.198189, -0.00584185, 0.651726)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.758537, -0.00584186, 0.679935)
 shape = SubResource("BoxShape3D_ws6oa")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.198, -0.006, -0.652)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.759, -0.006, -0.696965)
 shape = SubResource("BoxShape3D_ws6oa")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.03216, -0.00353301, -0.0254823)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.01938, -0.00353301, -0.0254823)
 shape = SubResource("BoxShape3D_lyln6")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
@@ -60,33 +60,50 @@ shape = SubResource("BoxShape3D_lyln6")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="interior" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-
-[node name="seat" parent="interior" instance=ExtResource("2_71k2r")]
-transform = Transform3D(-9.61652e-09, 0, 0.22, 0, 0.22, 0, -0.22, 0, -9.61652e-09, 1.40176, -0.688323, 0)
 
 [node name="pilot_room" type="Node3D" parent="interior"]
 
+[node name="seat" parent="interior/pilot_room" instance=ExtResource("2_71k2r")]
+transform = Transform3D(-9.61652e-09, 0, 0.22, 0, 0.22, 0, -0.22, 0, -9.61652e-09, 1.40176, -0.688323, 0)
+
 [node name="LightBulb" parent="interior/pilot_room" instance=ExtResource("4_kg1nc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23697, 0.668628, 0)
+color = Color(0.878431, 0.788235, 0.670588, 1)
+energy = 0.615
 
-[node name="pilot_room_wall" type="CSGCombiner3D" parent="interior/pilot_room"]
+[node name="room_wall" type="CSGCombiner3D" parent="interior/pilot_room"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.556001, 0, 0)
 use_collision = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="interior/pilot_room/pilot_room_wall"]
+[node name="CSGBox3D" type="CSGBox3D" parent="interior/pilot_room/room_wall"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000990212, 0)
 size = Vector3(0.065, 1.37353, 1.225)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="interior/pilot_room/pilot_room_wall"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="interior/pilot_room/room_wall"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.328321, 0)
 operation = 2
 size = Vector3(0.065, 0.700386, 0.425)
 
-[node name="body" type="Node3D" parent="interior"]
+[node name="main_room" type="Node3D" parent="interior"]
 
-[node name="LightBulb" parent="interior/body" instance=ExtResource("4_kg1nc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.686982, 0.668451, 0)
+[node name="LightBulb" parent="interior/main_room" instance=ExtResource("4_kg1nc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00845, 0.668451, 0)
+color = Color(0.878431, 0.788235, 0.670588, 1)
+
+[node name="engine_room" type="Node3D" parent="interior"]
+
+[node name="room_wall" type="CSGCombiner3D" parent="interior/engine_room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.58175, 0, 0)
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="interior/engine_room/room_wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000990212, 0)
+size = Vector3(0.065, 1.37353, 1.225)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="interior/engine_room/room_wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.328321, 0)
+operation = 2
+size = Vector3(0.065, 0.700386, 0.425)
 
 [node name="camera_pos" type="Node3D" parent="."]
 
@@ -94,7 +111,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.686982, 0.668451, 0)
 transform = Transform3D(-1.267e-08, 0, -0.289855, 0, 0.289855, 0, 0.289855, 0, -1.267e-08, 3.27951, 0, 0)
 
 [node name="rear" type="Marker3D" parent="camera_pos"]
-transform = Transform3D(-1.267e-08, -0.0348223, 0.287756, 0, 0.287756, 0.0348223, -0.289855, 1.52213e-09, -1.25782e-08, -4.19867, -0.101605, 0)
+transform = Transform3D(-1.267e-08, -0.0348223, 0.287756, 0, 0.287756, 0.0348223, -0.289855, 1.52213e-09, -1.25782e-08, -6.20112, -0.101605, 0)
 
 [node name="right" type="Marker3D" parent="camera_pos"]
 transform = Transform3D(-0.0828081, 0, 0.277775, 0, 0.289855, 0, -0.277775, 0, -0.0828081, 2.24713, 0, 1.07034)
@@ -103,7 +120,7 @@ transform = Transform3D(-0.0828081, 0, 0.277775, 0, 0.289855, 0, -0.277775, 0, -
 transform = Transform3D(0.0828081, 0, 0.277775, 0, 0.289855, 0, -0.277775, 0, 0.0828081, 2.24725, 0, -1.07043)
 
 [node name="top" type="Marker3D" parent="camera_pos"]
-transform = Transform3D(-1.267e-08, 0, -0.289855, 0, 0.289855, 0, 0.289855, 0, -1.267e-08, -0.397301, 1.85966, 0)
+transform = Transform3D(-1.267e-08, 0, -0.289855, 0, 0.289855, 0, 0.289855, 0, -1.267e-08, -0.841663, 1.83261, 0)
 
 [node name="camera_viewport" type="SubViewport" parent="."]
 
@@ -112,7 +129,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.314
 current = true
 
 [node name="rear" type="Camera3D" parent="camera_viewport"]
-transform = Transform3D(-4.37114e-08, -0.120137, 0.992757, 0, 0.992757, 0.120137, -1, 5.25135e-09, -4.33948e-08, -14.4854, -0.350536, 0)
+transform = Transform3D(-4.37114e-08, -0.120137, 0.992757, 0, 0.992757, 0.120137, -1, 5.25136e-09, -4.33948e-08, -21.3938, -0.350536, 0)
 current = true
 
 [node name="right" type="Camera3D" parent="camera_viewport"]
@@ -122,7 +139,7 @@ transform = Transform3D(-0.285688, 0, 0.958323, 0, 1, 0, -0.958323, 0, -0.285688
 transform = Transform3D(0.285688, 0, 0.958323, 0, 1, 0, -0.958323, 0, 0.285688, 7.753, 0, -3.693)
 
 [node name="top" type="Camera3D" parent="camera_viewport"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.37069, 6.41581, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.90374, 6.32247, 0)
 
 [node name="tv" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37115e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.29561, -0.0951304, 0)
@@ -143,4 +160,4 @@ shadow_enabled = true
 spot_range = 100.0
 spot_angle = 55.91
 
-[connection signal="when_use" from="interior/seat" to="." method="_on_seat_when_use"]
+[connection signal="when_use" from="interior/pilot_room/seat" to="." method="_on_seat_when_use"]
