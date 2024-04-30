@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://drf4m5ce6chqa"]
+
+[ext_resource type="PackedScene" uid="uid://ddnkroc40ksyv" path="res://model/fish/very-long-fish.blend" id="1_ienou"]
+[ext_resource type="Script" path="res://scene/object/fish/fish.gd" id="2_oa7xh"]
+
+[node name="very-long-fish" instance=ExtResource("1_ienou")]
+script = ExtResource("2_oa7xh")
+swing_sensitivity = 0.135
+
+[node name="target_container" type="Node" parent="." index="0"]
+
+[node name="tail_target" type="Marker3D" parent="target_container" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.21419e-38, -0.0507411, -2.79748)
+
+[node name="armature" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.0244244, -0.998987, 0, 0.688381, 0.035445, 0, -0.124519, 1.48979)
+
+[node name="Skeleton3D" parent="armature" index="0"]
+bones/1/rotation = Quaternion(3.33273e-08, 0.985242, 0.171166, 1.91834e-07)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/rotation = Quaternion(0.999912, -7.89819e-09, 5.95994e-07, -0.013251)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/rotation = Quaternion(0.00804697, 2.83706e-14, 9.59274e-09, 0.999968)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(-0.00456852, 5.63401e-14, -5.4461e-09, 0.99999)
+bones/5/rotation = Quaternion(0.000265214, -1.99216e-13, 3.16159e-10, 1)
+bones/6/rotation = Quaternion(6.69991e-05, 1.13406e-13, 7.98714e-11, 1)
+bones/7/rotation = Quaternion(0.0015229, -8.55115e-14, 1.81545e-09, 0.999999)
+bones/8/rotation = Quaternion(-0.00340218, 1.13369e-13, -4.05571e-09, 0.999994)
+bones/9/rotation = Quaternion(-0.00449965, -1.42207e-13, -5.364e-09, 0.99999)
+
+[node name="tailIK" type="SkeletonIK3D" parent="armature/Skeleton3D" index="1"]
+process_priority = 1
+root_bone = &"body"
+tip_bone = &"itp"
+target_node = NodePath("../../../target_container/tail_target")
+
+[node name="tail_pos" type="Marker3D" parent="armature" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.0514778, 1.45086, 0, -0.999756, 0.0354723, 0, -6.21641, -0.225839)

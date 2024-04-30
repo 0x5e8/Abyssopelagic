@@ -37,8 +37,13 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		move_view(event.relative)
 
-func _physics_process(delta):
+func _process(delta):
 	message_output.text = ""
+	
+	if Input.is_action_pressed("zoom"):
+		$camera.fov = lerp($camera.fov, 30.0, 0.1)
+	else:
+		$camera.fov = lerp($camera.fov, 75.0, 0.1)
 	
 	var obj = $camera/ray.get_collider()
 	if obj:

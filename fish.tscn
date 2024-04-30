@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://br1xst4rg3erl"]
+
+[ext_resource type="Script" path="res://script/boids/boid.gd" id="1_b0iom"]
+[ext_resource type="PackedScene" uid="uid://djhploxqmgrtu" path="res://scene/object/fish/fish.tscn" id="2_pkaqb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hty36"]
+size = Vector3(0.34668, 0.497559, 3.28864)
+
+[node name="lefishe" type="CharacterBody3D"]
+motion_mode = 1
+velocity = Vector3(0, 0, -2)
+script = ExtResource("1_b0iom")
+
+[node name="ray_r" type="RayCast3D" parent="."]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0, 0, -0.271557)
+target_position = Vector3(0, 0, -1)
+
+[node name="collider2" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 1.33681)
+shape = SubResource("BoxShape3D_hty36")
+
+[node name="fish" parent="." instance=ExtResource("2_pkaqb")]
+swing_power = 0.2
+swing_speed = 10.625
+swing_sensitivity = 0.385
+
+[node name="root" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)

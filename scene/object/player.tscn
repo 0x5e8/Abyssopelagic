@@ -17,6 +17,7 @@ shape = SubResource("CapsuleShape3D_dgcsi")
 
 [node name="camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.518366, -0.449251)
+current = true
 
 [node name="ray" type="RayCast3D" parent="camera"]
 target_position = Vector3(0, 0, -3)

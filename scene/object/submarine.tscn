@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfifsi00ny448"]
+[gd_scene load_steps=11 format=3 uid="uid://bfifsi00ny448"]
 
 [ext_resource type="Script" path="res://scene/object/submarine.gd" id="1_kylpk"]
 [ext_resource type="PackedScene" uid="uid://htixl53ys1bg" path="res://scene/object/item/seat.tscn" id="2_71k2r"]
 [ext_resource type="PackedScene" uid="uid://d03rb2wyxc7aa" path="res://model/submarine.blend" id="3_ua0ol"]
+[ext_resource type="Shader" path="res://shader/tv.gdshader" id="4_pdem8"]
+[ext_resource type="Texture2D" uid="uid://b4aj4aimqvtdb" path="res://icon.png" id="5_p1j3c"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iv1ji"]
 size = Vector3(4.69342, 0.0854187, 1.24329)
@@ -13,17 +15,27 @@ size = Vector3(4.58838, 1.37241, 0.074707)
 [sub_resource type="BoxShape3D" id="BoxShape3D_lyln6"]
 size = Vector3(0.141357, 1.3764, 1.24501)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yh0ot"]
+render_priority = 0
+shader = ExtResource("4_pdem8")
+shader_parameter/r_displacement = Vector2(0.002, 0)
+shader_parameter/g_displacement = Vector2(0, 0.002)
+shader_parameter/b_displacement = Vector2(-0.002, 0)
+shader_parameter/tv_texture = ExtResource("5_p1j3c")
+
+[sub_resource type="QuadMesh" id="QuadMesh_a6jax"]
+material = SubResource("ShaderMaterial_yh0ot")
+
 [node name="submarine" type="CharacterBody3D"]
 transform = Transform3D(3.45, 0, 0, 0, 3.45, 0, 0, 0, 3.45, 0, 0, 0)
 motion_mode = 1
 script = ExtResource("1_kylpk")
 
 [node name="seat" parent="." instance=ExtResource("2_71k2r")]
-transform = Transform3D(-9.61651e-09, 0, 0.22, 0, 0.22, 0, -0.22, 0, -9.61651e-09, 2.24376, -0.69139, 0)
+transform = Transform3D(-9.61652e-09, 0, 0.22, 0, 0.22, 0, -0.22, 0, -9.61652e-09, 1.40176, -0.612295, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.273629, -0.732171, 0.000793368)
-visible = false
 shape = SubResource("BoxShape3D_iv1ji")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
@@ -36,15 +48,65 @@ shape = SubResource("BoxShape3D_ws6oa")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.03216, -0.00353301, -0.0254823)
-visible = false
 shape = SubResource("BoxShape3D_lyln6")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.684, -0.00527251, -0.000145048)
-visible = false
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.34882, -0.00527251, -0.000145048)
 shape = SubResource("BoxShape3D_lyln6")
 
 [node name="submarine" parent="." instance=ExtResource("3_ua0ol")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="camera_pos" type="Node3D" parent="."]
+
+[node name="front" type="Marker3D" parent="camera_pos"]
+transform = Transform3D(-1.267e-08, 0, -0.289855, 0, 0.289855, 0, 0.289855, 0, -1.267e-08, 3.27951, 0, 0)
+
+[node name="rear" type="Marker3D" parent="camera_pos"]
+transform = Transform3D(-1.267e-08, -0.0348223, 0.287756, 0, 0.287756, 0.0348223, -0.289855, 1.52213e-09, -1.25782e-08, -4.19867, -0.101605, 0)
+
+[node name="right" type="Marker3D" parent="camera_pos"]
+transform = Transform3D(-0.0828081, 0, 0.277775, 0, 0.289855, 0, -0.277775, 0, -0.0828081, 2.24713, 0, 1.07034)
+
+[node name="left" type="Marker3D" parent="camera_pos"]
+transform = Transform3D(0.0828081, 0, 0.277775, 0, 0.289855, 0, -0.277775, 0, 0.0828081, 2.24725, 0, -1.07043)
+
+[node name="top" type="Marker3D" parent="camera_pos"]
+transform = Transform3D(-1.267e-08, 0, -0.289855, 0, 0.289855, 0, 0.289855, 0, -1.267e-08, -0.397301, 1.85966, 0)
+
+[node name="camera_viewport" type="SubViewport" parent="."]
+
+[node name="front" type="Camera3D" parent="camera_viewport"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.3143, 0, 0)
+current = true
+
+[node name="rear" type="Camera3D" parent="camera_viewport"]
+transform = Transform3D(-4.37114e-08, -0.120137, 0.992757, 0, 0.992757, 0.120137, -1, 5.25135e-09, -4.33948e-08, -14.4854, -0.350536, 0)
+current = true
+
+[node name="right" type="Camera3D" parent="camera_viewport"]
+transform = Transform3D(-0.285688, 0, 0.958323, 0, 1, 0, -0.958323, 0, -0.285688, 7.7526, 0, 3.69267)
+
+[node name="left" type="Camera3D" parent="camera_viewport"]
+transform = Transform3D(0.285688, 0, 0.958323, 0, 1, 0, -0.958323, 0, 0.285688, 7.753, 0, -3.693)
+
+[node name="top" type="Camera3D" parent="camera_viewport"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.37069, 6.41581, 0)
+
+[node name="tv" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37115e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.29561, -0.0951304, 0)
+mesh = SubResource("QuadMesh_a6jax")
+
+[node name="light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.59444, 0.522574, 0)
+shadow_enabled = true
+omni_range = 76.365
+omni_attenuation = 1.86607
+
+[node name="headlilght" type="SpotLight3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.19255, 0, 0)
+light_energy = 10.0
+spot_range = 30.0
+spot_angle = 47.62
 
 [connection signal="when_use" from="seat" to="." method="_on_seat_when_use"]
