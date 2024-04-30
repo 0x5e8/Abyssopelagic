@@ -14,8 +14,14 @@ func _ready():
 	for z in range(len(rayDirs)):
 		var r = RayCast3D.new()
 		r.target_position = rayDirs[z]*detection_range
+		r.rotation = $"root".rotation
 		self.add_child(r)
 		raysArr.append(r)
+
+		var point = Node3D.new()
+		point.name = "point"
+		point.position = r.target_position
+		r.add_child(point)
 func rotate_to(target,w):
 	var o_rot = rotation
 	look_at(target)
@@ -32,10 +38,7 @@ func _physics_process(delta):
 
 	var u_obs_dist = 0
 	var avoid_vect = Vector3.ZERO
-	for ray in range(len(rayDirs)):
-		var indvRay = raysArr[ray]
-		indvRay.position = $"root".position
-		indvRay.rotation = $"root".rotation
+	for indvRay in raysArr:
 		var dir = (indvRay.target_position + indvRay.position + position) # no
 		#print(dir)
 		
@@ -52,6 +55,8 @@ func _physics_process(delta):
 
 			#if dist < u_obs_dist  :
 		else:
+			# TODO: use this
+			# global ray target: indvRay.get_node("point").global_position
 			pass
 			#avoid_vect = forward
 			#forward = avoid_vect
