@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://htixl53ys1bg"]
 
-[ext_resource type="Script" path="res://scene/object/item/item.gd" id="1_1qqg7"]
+[ext_resource type="Script" path="res://scene/object/usable.gd" id="1_xenny"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_0b4kd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xk5dg"]
 size = Vector3(1, 1.48194, 1.25922)
 
-[node name="seat" type="StaticBody3D" groups=["item"]]
-script = ExtResource("1_1qqg7")
+[node name="seat" type="StaticBody3D" groups=["item", "usable"]]
+script = ExtResource("1_xenny")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.395, 0, 0, 0, 1.15977, 0, 0.182796, 0.0913978)

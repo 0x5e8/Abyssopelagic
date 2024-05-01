@@ -8,6 +8,7 @@ script = ExtResource("1_73ai1")
 
 [node name="light" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0373255, 0)
+shadow_enabled = true
 omni_range = 10.0
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfifsi00ny448"]
+[gd_scene load_steps=14 format=3 uid="uid://bfifsi00ny448"]
 
 [ext_resource type="Script" path="res://scene/object/submarine.gd" id="1_kylpk"]
-[ext_resource type="PackedScene" uid="uid://htixl53ys1bg" path="res://scene/object/item/seat.tscn" id="2_71k2r"]
+[ext_resource type="PackedScene" uid="uid://htixl53ys1bg" path="res://scene/object/furniture/seat.tscn" id="2_71k2r"]
 [ext_resource type="PackedScene" uid="uid://d03rb2wyxc7aa" path="res://model/submarine.blend" id="3_ua0ol"]
 [ext_resource type="PackedScene" uid="uid://ckyk11yvdrs64" path="res://scene/object/furniture/light_bulb.tscn" id="4_kg1nc"]
 [ext_resource type="Shader" path="res://shader/tv.gdshader" id="4_pdem8"]
+[ext_resource type="PackedScene" uid="uid://c5d8i7dqpsrbb" path="res://scene/object/furniture/wall.tscn" id="5_lqwpn"]
 [ext_resource type="Texture2D" uid="uid://b4aj4aimqvtdb" path="res://icon.png" id="5_p1j3c"]
 [ext_resource type="Script" path="res://scene/object/camera_viewport.gd" id="5_rdyxt"]
 
@@ -73,39 +74,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23697, 0.668628, 0)
 color = Color(0.878431, 0.788235, 0.670588, 1)
 energy = 0.615
 
-[node name="room_wall" type="CSGCombiner3D" parent="interior/pilot_room"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.556001, 0, 0)
-use_collision = true
-
-[node name="CSGBox3D" type="CSGBox3D" parent="interior/pilot_room/room_wall"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000990212, 0)
-size = Vector3(0.065, 1.37353, 1.225)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="interior/pilot_room/room_wall"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.328321, 0)
-operation = 2
-size = Vector3(0.065, 0.700386, 0.425)
+[node name="Wall" parent="interior" instance=ExtResource("5_lqwpn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.498563, 0, 0)
 
 [node name="main_room" type="Node3D" parent="interior"]
 
 [node name="LightBulb" parent="interior/main_room" instance=ExtResource("4_kg1nc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00845, 0.668451, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.926947, 0.668451, 0)
 color = Color(0.878431, 0.788235, 0.670588, 1)
 
+[node name="Wall2" parent="interior" instance=ExtResource("5_lqwpn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33783, 0, 0)
+
 [node name="engine_room" type="Node3D" parent="interior"]
-
-[node name="room_wall" type="CSGCombiner3D" parent="interior/engine_room"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.58175, 0, 0)
-use_collision = true
-
-[node name="CSGBox3D" type="CSGBox3D" parent="interior/engine_room/room_wall"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000990212, 0)
-size = Vector3(0.065, 1.37353, 1.225)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="interior/engine_room/room_wall"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.328321, 0)
-operation = 2
-size = Vector3(0.065, 0.700386, 0.425)
 
 [node name="camera_pos" type="Node3D" parent="."]
 
@@ -122,7 +103,7 @@ transform = Transform3D(-0.0828081, 0, 0.277775, 0, 0.289855, 0, -0.277775, 0, -
 transform = Transform3D(0.0828081, 0, 0.277775, 0, 0.289855, 0, -0.277775, 0, 0.0828081, 2.24725, 0, -1.07043)
 
 [node name="top" type="Marker3D" parent="camera_pos"]
-transform = Transform3D(-1.267e-08, 0, -0.289855, 0, 0.289855, 0, 0.289855, 0, -1.267e-08, -0.841663, 1.83261, 0)
+transform = Transform3D(-1.267e-08, 0, -0.289855, 0, 0.289855, 0, 0.289855, 0, -1.267e-08, -0.841663, 1.87223, 0)
 
 [node name="camera_viewport" type="SubViewport" parent="." node_paths=PackedStringArray("tv")]
 script = ExtResource("5_rdyxt")
@@ -151,7 +132,7 @@ transform = Transform3D(-0.285688, 0, 0.958323, 0, 1, 0, -0.958323, 0, -0.285688
 transform = Transform3D(0.285688, 0, 0.958323, 0, 1, 0, -0.958323, 0, 0.285688, 7.753, 0, -3.693)
 
 [node name="top" type="Camera3D" parent="camera_viewport"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.90374, 6.32247, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.90374, 6.45916, 0)
 
 [node name="tv" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37115e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.29561, -0.0951304, 0)

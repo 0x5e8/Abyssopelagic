@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8bairvotftmf"]
+
+[ext_resource type="Script" path="res://scene/object/furniture/door.gd" id="1_gc2w3"]
+[ext_resource type="Script" path="res://scene/object/usable.gd" id="1_urx3r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_klwxl"]
+size = Vector3(1.81252, 2.90693, 0.155)
+
+[node name="Door" type="StaticBody3D" node_paths=PackedStringArray("callback_object") groups=["usable"]]
+script = ExtResource("1_urx3r")
+message_when_look = "f to open"
+callback_object = NodePath("process_event")
+
+[node name="process_event" type="Node" parent="."]
+script = ExtResource("1_gc2w3")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.945489, 0.0252575, 0)
+size = Vector3(2.03911, 3.21555, 0.11)
+
+[node name="dir" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.724255)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.969717, 0.031307, 0)
+shape = SubResource("BoxShape3D_klwxl")

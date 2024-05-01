@@ -46,16 +46,16 @@ func _process(delta):
 		$camera.fov = lerp($camera.fov, 75.0, 0.1)
 	
 	var obj = $camera/ray.get_collider()
-	if obj:
-		if obj.is_in_group("item") and obj != using_item:
-			message_output.text = "f to use"
+	if obj and obj.is_in_group("usable") and not obj.used and not using_item:
+		message_output.text = obj.message_when_look
 	if Input.is_action_just_pressed("use"):
 		if using_item:
 			using_item.when_use.emit(self)
 			using_item = null
-		elif obj and obj.is_in_group("item"):
+		elif obj and obj.is_in_group("usable"):
 			obj.when_use.emit(self)
-			using_item = obj
+			if obj.is_in_group("item"):
+				using_item = obj
 	
 	# disable collision so that the sub will move freely
 	$collision.disabled = Global.piloting
