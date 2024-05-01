@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bfifsi00ny448"]
+[gd_scene load_steps=13 format=3 uid="uid://bfifsi00ny448"]
 
 [ext_resource type="Script" path="res://scene/object/submarine.gd" id="1_kylpk"]
 [ext_resource type="PackedScene" uid="uid://htixl53ys1bg" path="res://scene/object/item/seat.tscn" id="2_71k2r"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ckyk11yvdrs64" path="res://scene/object/furniture/light_bulb.tscn" id="4_kg1nc"]
 [ext_resource type="Shader" path="res://shader/tv.gdshader" id="4_pdem8"]
 [ext_resource type="Texture2D" uid="uid://b4aj4aimqvtdb" path="res://icon.png" id="5_p1j3c"]
+[ext_resource type="Script" path="res://scene/object/camera_viewport.gd" id="5_rdyxt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iv1ji"]
 size = Vector3(6.59572, 0.0854187, 1.24329)
@@ -26,6 +27,7 @@ shader_parameter/tv_texture = ExtResource("5_p1j3c")
 
 [sub_resource type="QuadMesh" id="QuadMesh_a6jax"]
 material = SubResource("ShaderMaterial_yh0ot")
+size = Vector2(1, 0.563)
 
 [node name="submarine" type="CharacterBody3D"]
 transform = Transform3D(3.45, 0, 0, 0, 3.45, 0, 0, 0, 3.45, 0, 0, 0)
@@ -122,7 +124,17 @@ transform = Transform3D(0.0828081, 0, 0.277775, 0, 0.289855, 0, -0.277775, 0, 0.
 [node name="top" type="Marker3D" parent="camera_pos"]
 transform = Transform3D(-1.267e-08, 0, -0.289855, 0, 0.289855, 0, 0.289855, 0, -1.267e-08, -0.841663, 1.83261, 0)
 
-[node name="camera_viewport" type="SubViewport" parent="."]
+[node name="camera_viewport" type="SubViewport" parent="." node_paths=PackedStringArray("tv")]
+script = ExtResource("5_rdyxt")
+resolution = 512
+tv = NodePath("../tv")
+
+[node name="cam_name" type="Label" parent="camera_viewport"]
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 137.0
+offset_bottom = 53.0
+text = "camearararar"
 
 [node name="front" type="Camera3D" parent="camera_viewport"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.3143, 0, 0)

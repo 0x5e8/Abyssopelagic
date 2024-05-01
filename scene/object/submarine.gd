@@ -9,7 +9,7 @@ var user: Node3D
 
 var elapsed_time = 0.0
 
-@onready var camera = $camera_viewport.get_children()
+var camera = []
 var relative_cam_rot = []
 @onready var cam_pos = $camera_pos.get_children()
 
@@ -21,20 +21,23 @@ func change_camera(id):
 	camera[selected_cam].current = false
 	camera[id].current = true
 	selected_cam = id
+	$camera_viewport/cam_name.text = camera[id].name
 	
 	var viewport = $camera_viewport.get_texture()
 	$tv.mesh.material.set_shader_parameter("tv_texture", viewport)
 
 func _ready():
 	# initiate cameras info
-	for cam in camera:
-		relative_cam_rot.append(cam.rotation)
+	for child in $camera_viewport.get_children():
+		if not (child is Camera3D): continue
+		camera.append(child)
+		relative_cam_rot.append(child.rotation)
 	
 	change_camera(0)
 
 func _physics_process(delta):
 	# update cameras' position
-	for id in range($camera_viewport.get_child_count()):
+	for id in range(len(camera)):
 		camera[id].position = cam_pos[id].global_position
 		camera[id].rotation = relative_cam_rot[id] + self.rotation
 
