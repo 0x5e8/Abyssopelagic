@@ -1,23 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://cqe4q27n7ostf"]
+[gd_scene load_steps=8 format=3 uid="uid://cqe4q27n7ostf"]
 
 [ext_resource type="PackedScene" uid="uid://bfifsi00ny448" path="res://scene/object/submarine.tscn" id="1_4mud5"]
 [ext_resource type="Script" path="res://script/control.gd" id="1_cff6m"]
+[ext_resource type="ArrayMesh" uid="uid://blqginnlywyf4" path="res://model/platform.res" id="4_ambxk"]
 [ext_resource type="PackedScene" uid="uid://djhploxqmgrtu" path="res://scene/object/fish/fish.tscn" id="4_frfam"]
 [ext_resource type="PackedScene" uid="uid://bubwwssirf2cr" path="res://scene/object/player.tscn" id="5_a5u2o"]
 [ext_resource type="PackedScene" uid="uid://drf4m5ce6chqa" path="res://scene/object/fish/very_long_fish.tscn" id="5_cu3qx"]
-[ext_resource type="PackedScene" uid="uid://bqcf86md5cl4s" path="res://model/platform.blend" id="7_43jxo"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_47cdp"]
-
-[sub_resource type="Sky" id="Sky_16hnq"]
-sky_material = SubResource("ProceduralSkyMaterial_47cdp")
 
 [sub_resource type="Environment" id="Environment_8ffeg"]
 background_mode = 1
 background_color = Color(0, 0, 0.0392157, 1)
-sky = SubResource("Sky_16hnq")
 tonemap_mode = 1
-glow_enabled = true
 
 [node name="Node" type="Node"]
 
@@ -28,29 +21,30 @@ environment = SubResource("Environment_8ffeg")
 script = ExtResource("1_cff6m")
 
 [node name="submarine" parent="." instance=ExtResource("1_4mud5")]
-transform = Transform3D(-3.44244, 0, -0.228344, 0, 3.45, 0, 0.228344, 0, -3.44244, 17.4304, 0, 0)
 
 [node name="player" parent="submarine" node_paths=PackedStringArray("message_output") instance=ExtResource("5_a5u2o")]
-transform = Transform3D(-0.0206482, 0, -0.289119, 0, 0.289855, 0, 0.289119, 0, -0.0206482, -0.216531, -0.40499, -0.0760671)
-message_output = NodePath("../../HUD/MarginContainer/message")
+transform = Transform3D(-0.0206482, 0, -0.289119, 0, 0.289855, 0, 0.289119, 0, -0.0206482, 0.890884, 0, 0)
+message_output = NodePath("../../HUD/message")
 
 [node name="map" type="Node" parent="."]
 
+[node name="Platform" type="MeshInstance3D" parent="map"]
+transform = Transform3D(220, 0, 0, 0, 220, 0, 0, 0, 220, 0, -45.1327, 0)
+mesh = ExtResource("4_ambxk")
+skeleton = NodePath("../..")
+
 [node name="fish" parent="map" instance=ExtResource("4_frfam")]
-transform = Transform3D(-0.962111, 0, 0.272658, 0, 1, 0, -0.272658, 0, -0.962111, 0, 0, 0)
+transform = Transform3D(-0.962111, 0, 0.272658, 0, 1, 0, -0.272658, 0, -0.962111, 55.8043, 0, 0)
 swinging = true
 
 [node name="fish3" parent="map" instance=ExtResource("4_frfam")]
-transform = Transform3D(-0.987018, 0, 0.160613, 0, 1, 0, -0.160613, 0, -0.987018, 2.41908, 1.57981, 0.027226)
+transform = Transform3D(-0.987018, 0, 0.160613, 0, 1, 0, -0.160613, 0, -0.987018, 58.2234, 1.57981, 0.027226)
 swinging = true
 swing_speed = 8.625
 
 [node name="very-long-fish" parent="map" instance=ExtResource("5_cu3qx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.04313, 0, 1.65094)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.7612, 0, 1.65094)
 swinging = true
-
-[node name="platform2" parent="map" instance=ExtResource("7_43jxo")]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 2.23999, -16.9254, 3.32343)
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -58,24 +52,22 @@ transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 2.23999, -16.9254, 3.32343
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -43.0
-offset_right = 86.0
-grow_vertical = 0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="message" type="Label" parent="HUD/MarginContainer"]
-layout_mode = 2
+[node name="message" type="Label" parent="HUD"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -11.5
+offset_right = 33.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
 text = "djfalkdjs"
 
 [node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.77469, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.2666, 5.77469, 0)
 pixel_size = 0.0246
 billboard = 1
 text = "test world

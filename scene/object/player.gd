@@ -15,19 +15,13 @@ var max_cam_angle = deg_to_rad(85)
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func move_view(point):
-	# rotate camera and player in the way that `point` in viewport now in the center of the viewport
-	# however it is not efficient
-	#var w = get_viewport().get_visible_rect().size.x
-	#var f = (w/2) * tan($camera.fov/2)
-	#
-	#self.rotation.y += atan(point.x/f * sensitivity)
-	#$camera.rotation.x += atan(point.y/f * sensitivity)
+	var sens = sensitivity / 100
+	sens *= $camera.fov / 105.0
 	
-	# much simpler approach
-	self.rotation.y -= point.x * sensitivity / 100
+	self.rotation.y -= point.x * sens
 	# prevent weird camera angle
-	# uncomment this line to do a barrel roll
-	$camera.rotation.x = clamp($camera.rotation.x - point.y * sensitivity / 100, -max_cam_angle, max_cam_angle)
+	# comment this line to do a barrel roll
+	$camera.rotation.x = clamp($camera.rotation.x - point.y * sens, -max_cam_angle, max_cam_angle)
 
 # mouse input
 func _input(event):
@@ -44,6 +38,7 @@ func _process(delta):
 		$camera.fov = lerp($camera.fov, 30.0, 0.1)
 	else:
 		$camera.fov = lerp($camera.fov, 75.0, 0.1)
+	message_output.visible = not Input.is_action_pressed("zoom")
 	
 	var obj = $camera/ray.get_collider()
 	if obj and obj.is_in_group("usable") and not obj.used and not using_item:

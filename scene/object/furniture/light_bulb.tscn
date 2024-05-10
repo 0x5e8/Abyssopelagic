@@ -1,22 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://ckyk11yvdrs64"]
+[gd_scene load_steps=4 format=3 uid="uid://ckyk11yvdrs64"]
 
 [ext_resource type="Script" path="res://scene/object/furniture/light_bulb.gd" id="1_73ai1"]
+[ext_resource type="Material" uid="uid://bmf3ht01g7kb5" path="res://scene/object/furniture/common_color.tres" id="2_ukw5p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ruigj"]
+shading_mode = 0
 
 [node name="LightBulb" type="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.19736, 0)
 cast_shadow = 0
 script = ExtResource("1_73ai1")
 
 [node name="light" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0373255, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.120488, 0)
 shadow_enabled = true
+shadow_bias = 0.05
+shadow_opacity = 0.84
 omni_range = 10.0
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
 radius = 0.11287
 height = 0.0413534
+material = ExtResource("2_ukw5p")
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0373255, 0)
-flip_faces = true
 radius = 0.0919396
 height = 0.0388437
+material = SubResource("StandardMaterial3D_ruigj")

@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8bairvotftmf"]
+[gd_scene load_steps=7 format=3 uid="uid://c8bairvotftmf"]
 
 [ext_resource type="Script" path="res://scene/object/furniture/door.gd" id="1_gc2w3"]
 [ext_resource type="Script" path="res://scene/object/usable.gd" id="1_urx3r"]
+[ext_resource type="Material" uid="uid://bmf3ht01g7kb5" path="res://scene/object/furniture/common_color.tres" id="3_vjs7l"]
+[ext_resource type="Material" uid="uid://trgqw6u0n2gh" path="res://scene/object/furniture/unique_color.tres" id="4_ui7l5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_klwxl"]
 size = Vector3(1.87892, 2.90693, 0.155)
@@ -9,9 +11,6 @@ size = Vector3(1.87892, 2.90693, 0.155)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2hdhq"]
 transparency = 1
 albedo_color = Color(0.247059, 0.6, 1, 0.321569)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ixt2"]
-albedo_color = Color(0.489622, 0.489622, 0.489622, 1)
 
 [node name="Door" type="StaticBody3D" node_paths=PackedStringArray("callback_object") groups=["usable"]]
 script = ExtResource("1_urx3r")
@@ -33,6 +32,7 @@ shape = SubResource("BoxShape3D_klwxl")
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.945489, 0.0252575, 0)
 size = Vector3(2.03911, 3.21555, 0.11)
+material = ExtResource("3_vjs7l")
 
 [node name="hole" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.929736, 0.497068, 0)
@@ -48,4 +48,4 @@ material = SubResource("StandardMaterial3D_2hdhq")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.70206, -0.295098, 0)
 radius = 0.118
 height = 0.285
-material = SubResource("StandardMaterial3D_6ixt2")
+material = ExtResource("4_ui7l5")

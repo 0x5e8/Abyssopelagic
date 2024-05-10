@@ -1,8 +1,10 @@
 extends Node
 
+const OPEN_ANGLE = PI * 4/5
+const OPEN_SPEED = 0.08
+
 @onready var parent = get_parent()
 var rotating = false
-
 
 @onready var default_rot = parent.rotation
 var target_rot
@@ -19,15 +21,15 @@ func when_use(user):
 	
 	target_rot = default_rot
 	if dot >= 0:
-		target_rot.y += PI/2
+		target_rot.y += OPEN_ANGLE
 	else:
-		target_rot.y -= PI/2
+		target_rot.y -= OPEN_ANGLE
 
 	rotating = true
 
 func _physics_process(delta):
 	if rotating:
-		parent.rotation = lerp(parent.rotation, target_rot, 0.1)
+		parent.rotation = lerp(parent.rotation, target_rot, OPEN_SPEED)
 		if abs(parent.rotation.y - target_rot.y) <= 0.01:
 			parent.rotation = target_rot
 			rotating = false

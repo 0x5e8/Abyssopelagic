@@ -19,7 +19,8 @@ shape = SubResource("CapsuleShape3D_dgcsi")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.663488, -0.449251)
 cull_mask = 1048573
 current = true
-near = 0.01
+near = 0.02
+far = 100.0
 
 [node name="ray" type="RayCast3D" parent="camera"]
 target_position = Vector3(0, 0, -2.465)

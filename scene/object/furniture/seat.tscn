@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://htixl53ys1bg"]
+[gd_scene load_steps=5 format=3 uid="uid://htixl53ys1bg"]
 
 [ext_resource type="Script" path="res://scene/object/usable.gd" id="1_xenny"]
+[ext_resource type="Material" uid="uid://trgqw6u0n2gh" path="res://scene/object/furniture/unique_color.tres" id="2_idu6n"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_0b4kd"]
+material = ExtResource("2_idu6n")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xk5dg"]
 size = Vector3(1, 1.48194, 1.25922)
