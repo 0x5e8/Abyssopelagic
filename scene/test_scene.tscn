@@ -32,7 +32,7 @@ transform = Transform3D(-3.44244, 0, -0.228344, 0, 3.45, 0, 0.228344, 0, -3.4424
 
 [node name="player" parent="submarine" node_paths=PackedStringArray("message_output") instance=ExtResource("5_a5u2o")]
 transform = Transform3D(-0.0206482, 0, -0.289119, 0, 0.289855, 0, 0.289119, 0, -0.0206482, -0.216531, -0.40499, -0.0760671)
-message_output = NodePath("../../HUD/message")
+message_output = NodePath("../../HUD/MarginContainer/message")
 
 [node name="map" type="Node" parent="."]
 
@@ -58,18 +58,21 @@ transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 2.23999, -16.9254, 3.32343
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="message" type="Label" parent="HUD"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -43.0
+offset_right = 86.0
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="message" type="Label" parent="HUD/MarginContainer"]
+layout_mode = 2
+text = "djfalkdjs"
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.77469, 0)
