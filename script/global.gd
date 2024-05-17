@@ -1,3 +1,3 @@
 extends Node
 
-var piloting = false
+var pilotting = false

@@ -7,6 +7,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dgcsi"]
 
 [node name="player" type="CharacterBody3D"]
+safe_margin = 0.002
 script = ExtResource("1_0ykv3")
 
 [node name="mesh" type="MeshInstance3D" parent="."]

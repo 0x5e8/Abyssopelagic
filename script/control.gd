@@ -24,9 +24,3 @@ func _input(event):
 			sub.change_camera(4)
 	if event is InputEventMouseButton and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
-func _process(_delta):
-	if Global.piloting:
-		label.text = "piloting"
-	else:
-		label.text = ""

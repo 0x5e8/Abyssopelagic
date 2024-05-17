@@ -147,7 +147,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.903
 far = 1000.0
 
 [node name="tv" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37115e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.29561, -0.0951304, 0)
+transform = Transform3D(-4.37115e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.29561, -0.23715, 0)
 layers = 3
 mesh = SubResource("QuadMesh_a6jax")
 

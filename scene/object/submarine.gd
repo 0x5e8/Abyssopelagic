@@ -9,12 +9,22 @@ var user: Node3D
 
 var elapsed_time = 0.0
 
+enum CAM {
+	FRONT,
+	REAR,
+	RIGHT,
+	LEFT,
+	TOP
+}
+
 var camera = []
 var relative_cam_rot = []
 @onready var cam_pos = $camera_pos.get_children()
 
-var headlight_shown = true
 @onready var default_headlight_energy = $headlight.light_energy
+@onready var default_headlight_rotation = $headlight.rotation
+
+@onready var default_front_can_pan = $camera_pos/front.rotation.x
 
 var selected_cam = 0
 func change_camera(id):
@@ -52,22 +62,46 @@ func _physics_process(delta):
 	$IRlight.global_rotation = camera[selected_cam].global_rotation
 	$IRlight.global_position = camera[selected_cam].global_position
 	
-	if Input.is_action_just_pressed("light"):
-	# in vulkan renderer just do $headlight.visible = not $headlight.visible
-	# but opengl renderer is fucking broken and will yield a fucking annoying bug
-	# here's the hack: just set the light energy to 0 to "disable" the light instead
-	# i wasted 5hrs to figure this out
-	# fuck my life
-	# p.s: anything that really hide the light from the camera (i.e changing visual layer) will not work
+	if Input.is_action_just_pressed("light") and Global.pilotting:
+		# in vulkan renderer just do $headlight.visible = not $headlight.visible
+		# but opengl renderer is fucking broken and will yield a fucking annoying bug
+		# here's the hack: just set the light energy to 0 to "disable" the light instead
+		# i wasted 5hrs to figure this out
+		# fuck my life
+		# p.s: anything that really hide the light from the camera (i.e changing visual layer) will not work
 		if $headlight.light_energy == 0:
 			$headlight.light_energy = default_headlight_energy
 		else:
 			$headlight.light_energy = 0
+	
+	if user:
+		user.global_position = $interior/pilot_room/seat/seat_point.global_position
+
+	if selected_cam == CAM.FRONT and user:
+		var rot_dir = Input.get_axis("cam_down", "cam_up")
+		relative_cam_rot[CAM.FRONT].x += rot_dir * 0.01
+		relative_cam_rot[CAM.FRONT].x = clamp(relative_cam_rot[CAM.FRONT].x, -PI/3, PI/3)
+
+		# rotate headlight according to player looking direction
+		# used lerp to add some delay
+		var usr_cam = user.get_node("camera")
+		# add cam rot to calculate target rotation (im lazy to do maths)
+		usr_cam.rotation.x += relative_cam_rot[CAM.FRONT].x
+		# apply
+		$headlight.global_rotation = lerp($headlight.global_rotation, usr_cam.global_rotation, 0.1)
+		$headlight.rotation.y = clamp($headlight.rotation.y, -PI/4 + default_headlight_rotation.y,
+															  PI/4 + default_headlight_rotation.y)
+		# revert
+		usr_cam.rotation.x -= relative_cam_rot[CAM.FRONT].x
+	else:
+		relative_cam_rot[CAM.FRONT].x = lerp(relative_cam_rot[CAM.FRONT].x, default_front_can_pan, 0.1)
+		$headlight.rotation = lerp($headlight.rotation, default_headlight_rotation, 0.1)
 
 	var input_dir = Vector3.ZERO
 	var y_dir = 0
 
-	if Global.piloting:
+	# only move and rotate when pilotting
+	if Global.pilotting:
 		input_dir = Input.get_vector("backward", "forward", "left", "right")
 		y_dir = Input.get_axis("down", "up")
 
@@ -87,11 +121,9 @@ func _physics_process(delta):
 
 	if not $interior/pilot_room/seat.used:
 		user = null
-		Global.piloting = false
+		Global.pilotting = false
 	else:
-		Global.piloting = true
-	if user:
-		user.global_position = $interior/pilot_room/seat/seat_point.global_position
+		Global.pilotting = true
 
 func _on_seat_when_use(usr):
 	user = usr

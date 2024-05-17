@@ -53,9 +53,9 @@ func _process(delta):
 				using_item = obj
 	
 	# disable collision so that the sub will move freely
-	$collision.disabled = Global.piloting
+	$collision.disabled = Global.pilotting
 	# disable movement in the cursed way
-	if Global.piloting:
+	if Global.pilotting:
 		return
 	
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
