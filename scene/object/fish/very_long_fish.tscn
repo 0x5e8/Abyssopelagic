@@ -10,7 +10,7 @@ swing_sensitivity = 0.135
 [node name="target_container" type="Node" parent="." index="0"]
 
 [node name="tail_target" type="Marker3D" parent="target_container" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.21419e-38, -0.0507411, -2.79748)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0507409, -2.79747)
 
 [node name="armature" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 0.0244244, -0.998987, 0, 0.688381, 0.035445, 0, -0.124519, 1.48979)
@@ -19,7 +19,6 @@ transform = Transform3D(1, 0, 0, 0, 0.0244244, -0.998987, 0, 0.688381, 0.035445,
 bones/1/rotation = Quaternion(3.33273e-08, 0.985242, 0.171166, 1.91834e-07)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/rotation = Quaternion(0.999912, -7.89819e-09, 5.95994e-07, -0.013251)
-bones/2/scale = Vector3(1, 1, 1)
 bones/3/rotation = Quaternion(0.00804697, 2.83706e-14, 9.59274e-09, 0.999968)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/rotation = Quaternion(-0.00456852, 5.63401e-14, -5.4461e-09, 0.99999)

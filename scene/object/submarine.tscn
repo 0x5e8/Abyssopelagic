@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bfifsi00ny448"]
+[gd_scene load_steps=17 format=3 uid="uid://bfifsi00ny448"]
 
 [ext_resource type="Script" path="res://scene/object/submarine.gd" id="1_kylpk"]
 [ext_resource type="PackedScene" uid="uid://htixl53ys1bg" path="res://scene/object/furniture/seat.tscn" id="2_71k2r"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" path="res://shader/tv.gdshader" id="4_pdem8"]
 [ext_resource type="PackedScene" uid="uid://c5d8i7dqpsrbb" path="res://scene/object/furniture/wall.tscn" id="5_lqwpn"]
 [ext_resource type="Script" path="res://scene/object/camera_viewport.gd" id="5_rdyxt"]
+[ext_resource type="Texture2D" uid="uid://b4aj4aimqvtdb" path="res://icon.png" id="8_dcdk7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jyt7i"]
 size = Vector3(6.092, 0.085, 1.008)
@@ -21,10 +22,10 @@ size = Vector3(6.229, 1.372, 0.045)
 size = Vector3(6.229, 1.372, 0.045)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_llh3h"]
-size = Vector3(0.141357, 1.3764, 1.24501)
+size = Vector3(0.414154, 0.0398824, 0.0579157)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_bpvov"]
-size = Vector3(0.142456, 1.3764, 1.24501)
+[sub_resource type="BoxShape3D" id="BoxShape3D_qbhgn"]
+size = Vector3(0.1, 0.1, 0.1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w02xt"]
 render_priority = 0
@@ -32,6 +33,7 @@ shader = ExtResource("4_pdem8")
 shader_parameter/r_displacement = Vector2(0.002, 0)
 shader_parameter/g_displacement = Vector2(0, 0.002)
 shader_parameter/b_displacement = Vector2(-0.002, 0)
+shader_parameter/tv_texture = ExtResource("8_dcdk7")
 
 [sub_resource type="QuadMesh" id="QuadMesh_a6jax"]
 material = SubResource("ShaderMaterial_w02xt")
@@ -63,8 +65,56 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.01938, -0.00353301, -0.025
 shape = SubResource("BoxShape3D_llh3h")
 
 [node name="interior_col_front" type="CollisionShape3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.34827, -0.00527251, -0.000145048)
-shape = SubResource("BoxShape3D_bpvov")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.36592, -0.00353301, -0.0254823)
+shape = SubResource("BoxShape3D_llh3h")
+
+[node name="sub_col_rear" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4423, 0.28131, 0.00150857)
+shape = SubResource("BoxShape3D_llh3h")
+
+[node name="sub_col_topleft" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.535779, 1.33788, -0.921247)
+shape = SubResource("BoxShape3D_llh3h")
+
+[node name="sub_col_topright" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.536, 1.338, 0.921)
+shape = SubResource("BoxShape3D_llh3h")
+
+[node name="sub_col_front1" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.92813, 0.726633, 0)
+shape = SubResource("BoxShape3D_qbhgn")
+
+[node name="sub_col_front2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.928, -0.727, 0)
+shape = SubResource("BoxShape3D_qbhgn")
+
+[node name="sub_col_front3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9019, 0, 0.732573)
+shape = SubResource("BoxShape3D_qbhgn")
+
+[node name="sub_col_front4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.902, 0, -0.733)
+shape = SubResource("BoxShape3D_qbhgn")
+
+[node name="cam_col_front" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.30998, 0, 0)
+shape = SubResource("BoxShape3D_qbhgn")
+
+[node name="cam_col_rear" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.21434, -0.109449, 0)
+shape = SubResource("BoxShape3D_qbhgn")
+
+[node name="cam_col_top" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.831773, 1.87964, 0)
+shape = SubResource("BoxShape3D_qbhgn")
+
+[node name="cam_col_right" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.22221, 0, 1.07232)
+shape = SubResource("BoxShape3D_qbhgn")
+
+[node name="cam_col_left" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.222, 0, -1.072)
+shape = SubResource("BoxShape3D_qbhgn")
 
 [node name="model" parent="." instance=ExtResource("3_ua0ol")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)

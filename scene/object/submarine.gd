@@ -88,15 +88,19 @@ func _physics_process(delta):
 		# add cam rot to calculate target rotation (im lazy to do maths)
 		usr_cam.rotation.x += relative_cam_rot[CAM.FRONT].x
 		# apply
-		$headlight.global_rotation = lerp($headlight.global_rotation, usr_cam.global_rotation, 0.1)
+		# BUG
+		# camera rotation in y dir auto convert anything below -PI to +PI
+		# causing lerp bugging
+		# use a special lerp func for angle or just set the light rotation directly
+		$headlight.global_rotation = lerp($headlight.global_rotation, usr_cam.global_rotation, 0.1) # FIXME
 		$headlight.rotation.y = clamp($headlight.rotation.y, -PI/4 + default_headlight_rotation.y,
 															  PI/4 + default_headlight_rotation.y)
 		# revert
 		usr_cam.rotation.x -= relative_cam_rot[CAM.FRONT].x
-	else:
-		relative_cam_rot[CAM.FRONT].x = lerp(relative_cam_rot[CAM.FRONT].x, default_front_can_pan, 0.1)
-		$headlight.rotation = lerp($headlight.rotation, default_headlight_rotation, 0.1)
-
+		
+		print("A: ", usr_cam.global_rotation)
+		print("B: ", $headlight.global_rotation)
+		
 	var input_dir = Vector3.ZERO
 	var y_dir = 0
 
