@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cqe4q27n7ostf"]
+[gd_scene load_steps=10 format=3 uid="uid://cqe4q27n7ostf"]
 
 [ext_resource type="PackedScene" uid="uid://bfifsi00ny448" path="res://scene/object/submarine.tscn" id="1_4mud5"]
 [ext_resource type="Script" path="res://script/control.gd" id="1_cff6m"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://djhploxqmgrtu" path="res://scene/object/fish/fish.tscn" id="4_frfam"]
 [ext_resource type="PackedScene" uid="uid://bubwwssirf2cr" path="res://scene/object/player.tscn" id="5_a5u2o"]
 [ext_resource type="PackedScene" uid="uid://drf4m5ce6chqa" path="res://scene/object/fish/very_long_fish.tscn" id="5_cu3qx"]
+[ext_resource type="Script" path="res://script/fps.gd" id="7_78080"]
 
 [sub_resource type="Environment" id="Environment_8ffeg"]
 background_mode = 1
@@ -39,7 +40,6 @@ skeleton = NodePath("../..")
 [node name="StaticBody3D" type="StaticBody3D" parent="map/Platform"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="map/Platform/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_jhpu4")
 
 [node name="fish" parent="map" instance=ExtResource("4_frfam")]
@@ -60,6 +60,7 @@ swinging = true
 [node name="pilot" type="Label" parent="HUD"]
 offset_right = 40.0
 offset_bottom = 23.0
+text = "pilot or not"
 
 [node name="message" type="Label" parent="HUD"]
 anchors_preset = 8
@@ -73,7 +74,19 @@ offset_right = 33.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "djfalkdjs"
+text = "message"
+horizontal_alignment = 1
+
+[node name="fps" type="Label" parent="HUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "FPS"
+horizontal_alignment = 2
+script = ExtResource("7_78080")
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.2666, 5.77469, 0)

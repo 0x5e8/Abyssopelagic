@@ -39,6 +39,13 @@ func change_camera(id):
 	var viewport = $camera_viewport.get_texture()
 	$tv.mesh.material.set_shader_parameter("tv_texture", viewport)
 
+func lerp_angle_3d(from, to, weight):
+	var ans = Vector3.ZERO
+	ans.x = lerp_angle(from.x, to.x, weight)
+	ans.y = lerp_angle(from.y, to.y, weight)
+	ans.z = lerp_angle(from.z, to.z, weight)
+	return ans
+
 func _ready():
 	# initiate cameras info
 	for child in $camera_viewport.get_children():
@@ -88,18 +95,11 @@ func _physics_process(delta):
 		# add cam rot to calculate target rotation (im lazy to do maths)
 		usr_cam.rotation.x += relative_cam_rot[CAM.FRONT].x
 		# apply
-		# BUG
-		# camera rotation in y dir auto convert anything below -PI to +PI
-		# causing lerp bugging
-		# use a special lerp func for angle or just set the light rotation directly
-		$headlight.global_rotation = lerp($headlight.global_rotation, usr_cam.global_rotation, 0.1) # FIXME
+		$headlight.global_rotation = lerp_angle_3d($headlight.global_rotation, usr_cam.global_rotation, 0.1)
 		$headlight.rotation.y = clamp($headlight.rotation.y, -PI/4 + default_headlight_rotation.y,
 															  PI/4 + default_headlight_rotation.y)
 		# revert
 		usr_cam.rotation.x -= relative_cam_rot[CAM.FRONT].x
-		
-		print("A: ", usr_cam.global_rotation)
-		print("B: ", $headlight.global_rotation)
 		
 	var input_dir = Vector3.ZERO
 	var y_dir = 0
