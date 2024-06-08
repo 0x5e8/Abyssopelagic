@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cqe4q27n7ostf"]
+[gd_scene load_steps=11 format=3 uid="uid://cqe4q27n7ostf"]
 
 [ext_resource type="PackedScene" uid="uid://bfifsi00ny448" path="res://scene/object/submarine.tscn" id="1_4mud5"]
 [ext_resource type="Script" path="res://script/control.gd" id="1_cff6m"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bubwwssirf2cr" path="res://scene/object/player.tscn" id="5_a5u2o"]
 [ext_resource type="PackedScene" uid="uid://drf4m5ce6chqa" path="res://scene/object/fish/very_long_fish.tscn" id="5_cu3qx"]
 [ext_resource type="Script" path="res://script/fps.gd" id="7_78080"]
+[ext_resource type="Script" path="res://script/message.gd" id="7_ibe62"]
 
 [sub_resource type="Environment" id="Environment_8ffeg"]
 background_mode = 1
@@ -26,9 +27,8 @@ script = ExtResource("1_cff6m")
 
 [node name="submarine" parent="." instance=ExtResource("1_4mud5")]
 
-[node name="player" parent="submarine" node_paths=PackedStringArray("message_output") instance=ExtResource("5_a5u2o")]
+[node name="player" parent="submarine" instance=ExtResource("5_a5u2o")]
 transform = Transform3D(-0.0206482, 0, -0.289119, 0, 0.289855, 0, 0.289119, 0, -0.0206482, 0.890884, 0, 0)
-message_output = NodePath("../../HUD/message")
 
 [node name="map" type="Node" parent="."]
 
@@ -76,6 +76,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "message"
 horizontal_alignment = 1
+script = ExtResource("7_ibe62")
 
 [node name="fps" type="Label" parent="HUD"]
 anchors_preset = 1

@@ -9,8 +9,6 @@ var using_item: Item
 
 var max_cam_angle = deg_to_rad(85)
 
-@export var message_output: Label
-
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -32,17 +30,16 @@ func _input(event):
 		move_view(event.relative)
 
 func _process(delta):
-	message_output.text = ""
-	
 	if Input.is_action_pressed("zoom"):
 		$camera.fov = lerp($camera.fov, 30.0, 0.1)
 	else:
 		$camera.fov = lerp($camera.fov, 75.0, 0.1)
-	message_output.visible = not Input.is_action_pressed("zoom")
 	
+	# update message
+	Global.displaying_message = ""
 	var obj = $camera/ray.get_collider()
 	if obj and obj.is_in_group("usable") and not obj.used and not using_item:
-		message_output.text = obj.message_when_look
+		Global.displaying_message = obj.message_when_look
 	if Input.is_action_just_pressed("use"):
 		if using_item:
 			using_item.when_use.emit(self)
@@ -52,9 +49,9 @@ func _process(delta):
 			if obj.is_in_group("item"):
 				using_item = obj
 	
-	# disable collision so that the sub will move freely
+	# disable collision so that player will not affect the sub causing bugs
 	$collision.disabled = Global.pilotting
-	# disable movement in the cursed way
+	# disable movement when pilotting
 	if Global.pilotting:
 		return
 	
