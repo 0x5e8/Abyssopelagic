@@ -12,6 +12,7 @@
 [sub_resource type="Environment" id="Environment_8ffeg"]
 background_mode = 1
 background_color = Color(0, 0, 0.0392157, 1)
+background_energy_multiplier = 0.2
 tonemap_mode = 1
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_jhpu4"]

@@ -1,6 +1,6 @@
 extends Node
 
-const OPEN_ANGLE = PI * 4/5
+const OPEN_ANGLE = PI * 3/5
 const OPEN_SPEED = 0.08
 
 @onready var parent = get_parent()

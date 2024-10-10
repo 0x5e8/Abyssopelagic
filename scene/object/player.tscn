@@ -3,8 +3,10 @@
 [ext_resource type="Script" path="res://scene/object/player.gd" id="1_0ykv3"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jyf0m"]
+radius = 0.33
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dgcsi"]
+radius = 0.33
 
 [node name="player" type="CharacterBody3D"]
 safe_margin = 0.002
@@ -17,8 +19,7 @@ mesh = SubResource("CapsuleMesh_jyf0m")
 shape = SubResource("CapsuleShape3D_dgcsi")
 
 [node name="camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.663488, -0.449251)
-cull_mask = 1048573
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.663488, -0.257308)
 current = true
 near = 0.02
 far = 100.0

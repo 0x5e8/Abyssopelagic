@@ -31,7 +31,7 @@ shape = SubResource("BoxShape3D_klwxl")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.945489, 0.0252575, 0)
-size = Vector3(2.03911, 3.21555, 0.11)
+size = Vector3(2.039, 3.216, 0.185)
 material = ExtResource("3_vjs7l")
 
 [node name="hole" type="CSGBox3D" parent="CSGCombiner3D"]

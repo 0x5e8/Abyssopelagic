@@ -1,13 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://bfifsi00ny448"]
+[gd_scene load_steps=12 format=3 uid="uid://bfifsi00ny448"]
 
 [ext_resource type="Script" path="res://scene/object/submarine.gd" id="1_kylpk"]
 [ext_resource type="PackedScene" uid="uid://htixl53ys1bg" path="res://scene/object/furniture/seat.tscn" id="2_71k2r"]
 [ext_resource type="PackedScene" uid="uid://d03rb2wyxc7aa" path="res://model/submarine.blend" id="3_ua0ol"]
 [ext_resource type="PackedScene" uid="uid://ckyk11yvdrs64" path="res://scene/object/furniture/light_bulb.tscn" id="4_kg1nc"]
-[ext_resource type="Shader" path="res://shader/tv.gdshader" id="4_pdem8"]
 [ext_resource type="PackedScene" uid="uid://c5d8i7dqpsrbb" path="res://scene/object/furniture/wall.tscn" id="5_lqwpn"]
-[ext_resource type="Script" path="res://scene/object/camera_viewport.gd" id="5_rdyxt"]
-[ext_resource type="Texture2D" uid="uid://b4aj4aimqvtdb" path="res://icon.png" id="8_dcdk7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jyt7i"]
 size = Vector3(6.092, 0.085, 1.008)
@@ -22,22 +19,10 @@ size = Vector3(6.229, 1.372, 0.045)
 size = Vector3(6.229, 1.372, 0.045)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_llh3h"]
-size = Vector3(0.414154, 0.0398824, 0.0579157)
+size = Vector3(0.039, 0.931, 0.918)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qbhgn"]
 size = Vector3(0.1, 0.1, 0.1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_w02xt"]
-render_priority = 0
-shader = ExtResource("4_pdem8")
-shader_parameter/r_displacement = Vector2(0.002, 0)
-shader_parameter/g_displacement = Vector2(0, 0.002)
-shader_parameter/b_displacement = Vector2(-0.002, 0)
-shader_parameter/tv_texture = ExtResource("8_dcdk7")
-
-[sub_resource type="QuadMesh" id="QuadMesh_a6jax"]
-material = SubResource("ShaderMaterial_w02xt")
-size = Vector2(1, 0.563)
 
 [node name="submarine" type="CharacterBody3D"]
 transform = Transform3D(3.45, 0, 0, 0, 3.45, 0, 0, 0, 3.45, 0, 0, 0)
@@ -69,7 +54,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.36592, -0.00353301, -0.0254
 shape = SubResource("BoxShape3D_llh3h")
 
 [node name="sub_col_rear" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4423, 0.28131, 0.00150857)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4423, 0.26673, 0.00150857)
 shape = SubResource("BoxShape3D_llh3h")
 
 [node name="sub_col_topleft" type="CollisionShape3D" parent="."]
@@ -94,26 +79,6 @@ shape = SubResource("BoxShape3D_qbhgn")
 
 [node name="sub_col_front4" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.902, 0, -0.733)
-shape = SubResource("BoxShape3D_qbhgn")
-
-[node name="cam_col_front" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.30998, 0, 0)
-shape = SubResource("BoxShape3D_qbhgn")
-
-[node name="cam_col_rear" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.21434, -0.109449, 0)
-shape = SubResource("BoxShape3D_qbhgn")
-
-[node name="cam_col_top" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.831773, 1.87964, 0)
-shape = SubResource("BoxShape3D_qbhgn")
-
-[node name="cam_col_right" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.22221, 0, 1.07232)
-shape = SubResource("BoxShape3D_qbhgn")
-
-[node name="cam_col_left" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.222, 0, -1.072)
 shape = SubResource("BoxShape3D_qbhgn")
 
 [node name="model" parent="." instance=ExtResource("3_ua0ol")]
@@ -144,73 +109,5 @@ color = Color(0.878431, 0.788235, 0.670588, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33783, 0, 0)
 
 [node name="engine_room" type="Node3D" parent="interior"]
-
-[node name="camera_pos" type="Node3D" parent="."]
-
-[node name="front" type="Marker3D" parent="camera_pos"]
-transform = Transform3D(-1.267e-08, 0, -0.289855, 0, 0.289855, 0, 0.289855, 0, -1.267e-08, 3.27951, 0, 0)
-
-[node name="rear" type="Marker3D" parent="camera_pos"]
-transform = Transform3D(-1.267e-08, -0.0348223, 0.287756, 0, 0.287756, 0.0348223, -0.289855, 1.52213e-09, -1.25782e-08, -6.20112, -0.101605, 0)
-
-[node name="right" type="Marker3D" parent="camera_pos"]
-transform = Transform3D(-0.0828081, 0, 0.277775, 0, 0.289855, 0, -0.277775, 0, -0.0828081, 2.24713, 0, 1.07034)
-
-[node name="left" type="Marker3D" parent="camera_pos"]
-transform = Transform3D(0.0828081, 0, 0.277775, 0, 0.289855, 0, -0.277775, 0, 0.0828081, 2.24725, 0, -1.07043)
-
-[node name="top" type="Marker3D" parent="camera_pos"]
-transform = Transform3D(-1.267e-08, 0, -0.289855, 0, 0.289855, 0, 0.289855, 0, -1.267e-08, -0.841663, 1.87223, 0)
-
-[node name="camera_viewport" type="SubViewport" parent="." node_paths=PackedStringArray("tv")]
-script = ExtResource("5_rdyxt")
-resolution = 512
-tv = NodePath("../tv")
-
-[node name="cam_name" type="Label" parent="camera_viewport"]
-offset_left = 30.0
-offset_top = 30.0
-offset_right = 137.0
-offset_bottom = 53.0
-text = "camearararar"
-
-[node name="front" type="Camera3D" parent="camera_viewport"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.3143, 0, 0)
-current = true
-far = 1000.0
-
-[node name="rear" type="Camera3D" parent="camera_viewport"]
-transform = Transform3D(-4.37114e-08, -0.120137, 0.992757, 0, 0.992757, 0.120137, -1, 5.25136e-09, -4.33948e-08, -21.3938, -0.350536, 0)
-current = true
-far = 1000.0
-
-[node name="right" type="Camera3D" parent="camera_viewport"]
-transform = Transform3D(-0.285688, 0, 0.958323, 0, 1, 0, -0.958323, 0, -0.285688, 7.7526, 0, 3.69267)
-far = 1000.0
-
-[node name="left" type="Camera3D" parent="camera_viewport"]
-transform = Transform3D(0.285688, 0, 0.958323, 0, 1, 0, -0.958323, 0, 0.285688, 7.753, 0, -3.693)
-far = 1000.0
-
-[node name="top" type="Camera3D" parent="camera_viewport"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.90374, 6.45916, 0)
-far = 1000.0
-
-[node name="tv" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37115e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.29561, -0.23715, 0)
-layers = 3
-mesh = SubResource("QuadMesh_a6jax")
-
-[node name="headlight" type="SpotLight3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.19255, 0, 0)
-light_energy = 10.0
-spot_range = 119.969
-spot_angle = 40.3913
-
-[node name="IRlight" type="SpotLight3D" parent="."]
-layers = 2
-light_color = Color(0, 0.635294, 0.635294, 1)
-spot_range = 140.445
-spot_angle = 49.6794
 
 [connection signal="when_use" from="interior/pilot_room/seat" to="." method="_on_seat_when_use"]

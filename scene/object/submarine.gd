@@ -7,38 +7,6 @@ var rotating_speed = 0.0
 
 var user: Node3D
 
-var elapsed_time = 0.0
-
-enum CAM {
-	FRONT,
-	REAR,
-	RIGHT,
-	LEFT,
-	TOP
-}
-
-var camera = []
-var relative_cam_rot = []
-@onready var cam_pos = $camera_pos.get_children()
-
-@onready var default_headlight_energy = $headlight.light_energy
-@onready var default_headlight_rotation = $headlight.rotation
-
-@onready var default_front_can_pan = $camera_pos/front.rotation.x
-
-var selected_cam = 0
-func change_camera(id):
-	if id >= len(camera) or id < 0:
-		return
-	
-	camera[selected_cam].current = false
-	camera[id].current = true
-	selected_cam = id
-	$camera_viewport/cam_name.text = camera[id].name
-	
-	var viewport = $camera_viewport.get_texture()
-	$tv.mesh.material.set_shader_parameter("tv_texture", viewport)
-
 func lerp_angle_3d(from, to, weight):
 	var ans = Vector3.ZERO
 	ans.x = lerp_angle(from.x, to.x, weight)
@@ -46,60 +14,12 @@ func lerp_angle_3d(from, to, weight):
 	ans.z = lerp_angle(from.z, to.z, weight)
 	return ans
 
-func _ready():
-	# initiate cameras info
-	for child in $camera_viewport.get_children():
-		if not (child is Camera3D): continue
-		camera.append(child)
-		relative_cam_rot.append(child.rotation)
-	
-	change_camera(0)
-
 func _physics_process(delta):
-	# update cameras' position
-	for id in range(len(camera)):
-		camera[id].position = cam_pos[id].global_position
-		camera[id].rotation = relative_cam_rot[id] + self.rotation
-
-	
-	elapsed_time += delta
-	# rotate top camera
-	$camera_viewport/top.rotation.y += PI * sin(elapsed_time * 0.155)
-	
-	$IRlight.global_rotation = camera[selected_cam].global_rotation
-	$IRlight.global_position = camera[selected_cam].global_position
-	
 	if Input.is_action_just_pressed("light") and Global.pilotting:
-		# in vulkan renderer just do $headlight.visible = not $headlight.visible
-		# but opengl renderer is fucking broken and will yield a fucking annoying bug
-		# here's the hack: just set the light energy to 0 to "disable" the light instead
-		# i wasted 5hrs to figure this out
-		# fuck my life
-		# p.s: anything that really hide the light from the camera (i.e changing visual layer) will not work
-		if $headlight.light_energy == 0:
-			$headlight.light_energy = default_headlight_energy
-		else:
-			$headlight.light_energy = 0
+		$headlight.visible = not $headlight.visible
 	
 	if user:
 		user.global_position = $interior/pilot_room/seat/seat_point.global_position
-
-	if selected_cam == CAM.FRONT and user:
-		var rot_dir = Input.get_axis("cam_down", "cam_up")
-		relative_cam_rot[CAM.FRONT].x += rot_dir * 0.01
-		relative_cam_rot[CAM.FRONT].x = clamp(relative_cam_rot[CAM.FRONT].x, -PI/3, PI/3)
-
-		# rotate headlight according to player looking direction
-		# used lerp to add some delay
-		var usr_cam = user.get_node("camera")
-		# add cam rot to calculate target rotation (im lazy to do maths)
-		usr_cam.rotation.x += relative_cam_rot[CAM.FRONT].x
-		# apply
-		$headlight.global_rotation = lerp_angle_3d($headlight.global_rotation, usr_cam.global_rotation, 0.1)
-		$headlight.rotation.y = clamp($headlight.rotation.y, -PI/4 + default_headlight_rotation.y,
-															  PI/4 + default_headlight_rotation.y)
-		# revert
-		usr_cam.rotation.x -= relative_cam_rot[CAM.FRONT].x
 		
 	var input_dir = Vector3.ZERO
 	var y_dir = 0
