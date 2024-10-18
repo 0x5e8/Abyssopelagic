@@ -2,17 +2,20 @@
 
 [ext_resource type="Script" path="res://scene/object/furniture/door.gd" id="1_gc2w3"]
 [ext_resource type="Script" path="res://scene/object/usable.gd" id="1_urx3r"]
-[ext_resource type="Material" uid="uid://bmf3ht01g7kb5" path="res://scene/object/furniture/common_color.tres" id="3_vjs7l"]
-[ext_resource type="Material" uid="uid://trgqw6u0n2gh" path="res://scene/object/furniture/unique_color.tres" id="4_ui7l5"]
+[ext_resource type="PackedScene" uid="uid://c235g6cf4e5tv" path="res://model/door.blend" id="5_3yxds"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_klwxl"]
-size = Vector3(1.87892, 2.90693, 0.155)
+size = Vector3(1.75888, 3.33196, 0.155)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2hdhq"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kwvlm"]
 transparency = 1
-albedo_color = Color(0.247059, 0.6, 1, 0.321569)
+albedo_color = Color(0, 0.615686, 1, 0.411765)
 
-[node name="Door" type="StaticBody3D" node_paths=PackedStringArray("callback_object") groups=["usable"]]
+[sub_resource type="BoxMesh" id="BoxMesh_17j7g"]
+material = SubResource("StandardMaterial3D_kwvlm")
+size = Vector3(1.115, 1.095, 0.085)
+
+[node name="door" type="StaticBody3D" node_paths=PackedStringArray("callback_object") groups=["usable"]]
 script = ExtResource("1_urx3r")
 message_when_look = "f to open"
 callback_object = NodePath("process_event")
@@ -24,28 +27,12 @@ script = ExtResource("1_gc2w3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.724255)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.00292, 0.031307, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.927863, 0.0914027, 0)
 shape = SubResource("BoxShape3D_klwxl")
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+[node name="door2" parent="." instance=ExtResource("5_3yxds")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0.910322, 0.165343, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.945489, 0.0252575, 0)
-size = Vector3(2.039, 3.216, 0.185)
-material = ExtResource("3_vjs7l")
-
-[node name="hole" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.929736, 0.497068, 0)
-operation = 2
-size = Vector3(1.124, 0.159, 0.26)
-
-[node name="hole_glass" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.929736, 0.497068, 0)
-size = Vector3(1.123, 0.158, 0.035)
-material = SubResource("StandardMaterial3D_2hdhq")
-
-[node name="knob" type="CSGCylinder3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.70206, -0.295098, 0)
-radius = 0.118
-height = 0.285
-material = ExtResource("4_ui7l5")
+[node name="glass" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.908036, 0.501419, 0)
+mesh = SubResource("BoxMesh_17j7g")
