@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bfifsi00ny448"]
+[gd_scene load_steps=13 format=3 uid="uid://bfifsi00ny448"]
 
 [ext_resource type="Script" path="res://scene/object/submarine.gd" id="1_kylpk"]
 [ext_resource type="PackedScene" uid="uid://htixl53ys1bg" path="res://scene/object/furniture/seat.tscn" id="2_71k2r"]
 [ext_resource type="PackedScene" uid="uid://d03rb2wyxc7aa" path="res://model/submarine.blend" id="3_ua0ol"]
 [ext_resource type="PackedScene" uid="uid://ckyk11yvdrs64" path="res://scene/object/furniture/light_bulb.tscn" id="4_kg1nc"]
 [ext_resource type="PackedScene" uid="uid://c5d8i7dqpsrbb" path="res://scene/object/furniture/wall.tscn" id="5_lqwpn"]
+[ext_resource type="PackedScene" uid="uid://c3s74ycpufeyi" path="res://scene/object/furniture/bed.tscn" id="6_8xwhu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jyt7i"]
 size = Vector3(6.092, 0.085, 1.008)
@@ -104,6 +105,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.498563, 0, 0)
 [node name="LightBulb" parent="interior/main_room" instance=ExtResource("4_kg1nc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.926947, 0.668451, 0)
 color = Color(0.878431, 0.788235, 0.670588, 1)
+
+[node name="bed" parent="interior/main_room" instance=ExtResource("6_8xwhu")]
+transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, -1.86774, -0.530458, -0.390805)
 
 [node name="Wall2" parent="interior" instance=ExtResource("5_lqwpn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33783, 0, 0)

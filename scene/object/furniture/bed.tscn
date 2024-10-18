@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3s74ycpufeyi"]
+
+[ext_resource type="Script" path="res://scene/object/usable.gd" id="1_hj2lv"]
+[ext_resource type="Script" path="res://scene/object/furniture/bed.gd" id="2_c70fa"]
+[ext_resource type="PackedScene" uid="uid://dmexitx3k5ocq" path="res://model/2_level_bed.blend" id="3_s4h1y"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jg7f2"]
+size = Vector3(5.605, 3.79, 3.01)
+
+[node name="bed" type="StaticBody3D" node_paths=PackedStringArray("callback_object") groups=["usable"]]
+script = ExtResource("1_hj2lv")
+message_when_look = "f to sleep"
+callback_object = NodePath("process_event")
+
+[node name="process_event" type="Node" parent="."]
+script = ExtResource("2_c70fa")
+
+[node name="2_level_bed" parent="." instance=ExtResource("3_s4h1y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.9, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.911731, 0)
+shape = SubResource("BoxShape3D_jg7f2")
